@@ -11,3 +11,14 @@ Método:                GET
 Código de estado:      404 Not Found
 Significado:         El servidor respondió, pero no existe un recurso en esa ruta.
 Qué muestra la página: Mensaje de error "Cannot GET /promociones.html"
+
+rueda-libre/
+├── index.html
+├── img/
+│   └── pasted image (2).png
+│   └── pasted image (3).png
+│   └── pasted image (4).png
+│   └── pasted image.png
+└── paginas/
+    ├── reservas.html
+    └── tarifas.html
