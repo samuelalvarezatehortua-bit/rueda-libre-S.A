@@ -32,7 +32,7 @@ Footer: Encuentranos, contacto email
 
 
 Plan → radio. Solo hay tres opciones y el cliente debe escoger exactamente una. Con botones de opción se ven todas a la vez y se evita el error de enviar dos valores o ninguno. Como comparten el mismo name, el navegador solo deja marcar una.
-Alquiler y tour guiado → select. Son cuatro opciones (-- Elige una opcion --, cuatro o tres) y una sola respuesta. La lista desplegable ocupa menos espacio y deja “-- Elige una opcion --” como valor por defecto, así nadie queda sin responder.
+Alquiler y tour guiado → select. Son cuatro o cinco opciones (-- Elige una opcion --, cuatro o tres) y una sola respuesta. La lista desplegable ocupa menos espacio y deja “-- Elige una opcion --” como valor por defecto, así nadie queda sin responder.
 Fecha → input type="date" y cantidad → input type="number". El selector de fecha evita las fechas mal escritas, que eran uno de los errores por WhatsApp. El campo numérico con min="1" impide cantidades vacías, negativas o con letras.
 
 
@@ -55,3 +55,11 @@ Campo	Dato de prueba	Resultado esperado	Resultado obtenido
 16	Políticas	Casilla sin marcar	Rechaza: debe aceptarla	
 17	Tipo / Plan	Sin elegir ninguno	Rechaza: elige una opción	
 
+Página	           Hallazgo	           Corrección
+tarifas.html	   lang="en"           Cambiar el lang="en" a lang="es"
+index.html	       lang="en"           Cambiar el lang="en" a lang="es"
+reservas.html      lang="en"           Cambiar el lang="en" a lang="es"
+tarifas.html       Solo h3             Corregir el h3 con el h2 en los puntos necesitados
+index.html         Solo h3             Corregir el h3 con el h2 en los puntos necesitados
+reservas.html      Solo h3             Corregir el h3 con el h2 en los puntos necesitados
+reservas.html      <li></li> solo      Borrar los <li></li> ya que no eran necesarios
