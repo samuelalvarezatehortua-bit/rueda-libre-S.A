@@ -6,13 +6,116 @@
     <title>Reservas</title>
 </head>
 <body>
-    <li>
+    <header>
+        <img src="../img/Pasted image.png" alt="logotipo" width="200" height="200">
+
+        <nav>
+        <li>
     <a href="http://127.0.0.1:5500/index.html">Volver al inicio</a>
     </li>
     <li>
         <a href="http://127.0.0.1:5500/paginas/tarifas.html">Ver tarifas</a>
     </li>
-   
+    <a href="#Encuentranos">Donde nos encuentras?</a>
+    </nav>
+    </header>
+    
+    <main>
+        <section>
+            <h3>Formulario de reserva</h3>
+
+            <form action="procesar-reserva.php" method="post">
+                <fieldset>
+                    <p>
+                    <label for="nombre">Nombre completo:</label><br>
+                    <input type="text" id="nombre" name="nombre" required minlength="3" maxlength="100">
+                </p>
+
+                <p>
+                    <label for="documento">Numero de documento:</label><br>
+                    <input type="text" id="documento" name="documento" inputmode="numeric" required pattern="[0-9]{6,10}">
+                </p>
+
+                <p>
+                    <label for="correo">Correo electronico:</label><br>
+                    <input type="email" id="correo" name="correo" required>
+                </p>
+
+                <p>
+                    <label for="telefono">Telefono:</label><br>
+                    <input type="tel" id="telefono" name="telefono" required maxlength="10" pattern="3[0-9]{9}" title="Escribe 10 digitos y que empiece por 3, sin espacios. ejemplo: 3004578956">
+                </p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Tu alquiler</legend>
+
+                    <p>
+                    <label for="fecha">Fecha:</label><br>
+                    <input type="date" id="fecha" name="fecha" required min="2026-11-01" max="2026-12-31">
+                </p>
+
+                <legend>Tipo de bicicleta</legend>
+                <p>
+                    <label for="servicio">Servicio:</label><br>
+                    <select name="servicio" id="servicio" required>
+                        <option value="">-- Elige una opcion --</option>
+                        <option value="bicicleta ciudad">Ciudad</option>
+                        <option value="bicicleta mtb">Mountain</option>
+                        <option value="bicicleta electrica">Electrica</option>
+                        <option value="bicicleta ruta">Ruta</option>
+                    </select>
+                </p>
+
+            <legend>Plan</legend>
+            <p>
+              <input type="radio" id="plan-hora" name="plan" value="1-hora" required>
+              <label for="plan-hora">1 hora</label>
+
+              <input type="radio" id="plan-medio" name="plan" value="medio-dia">
+              <label for="plan-medio">Medio dia</label>
+
+              <input type="radio" id="plan-dia" name="plan" value="dia-completo">
+              <label for="plan-dia">Dia completo</label>
+            </p>
+
+                    <legend>Tour guiado</legend>
+                    <label for="servicio">Servicio:</label><br>
+                    <select name="servicio" id="servicio" required>
+                        <option value="">-- Elige una opcion --</option>
+                        <option value="tour rio y parque">Rio y parques</option>
+                        <option value="tour sabores de barrio">Sabores de barrio</option>
+                        <option value="tour reto las palmas">Reto las palmas</option>
+                    </select>
+
+                     <p>
+            <label for="cantidad">Cantidad de bicicletas:</label><br>
+            <input type="number" id="cantidad" name="cantidad" min="1" max="6" value="1" required>
+          </p>
+
+                </fieldset>
+
+                <fieldset>
+                    <legend>Confirmacion</legend>
+
+                <p>
+                    <label for="comentarios">Comentarios:</label><br>
+                    <textarea id="comentarios" name="comentarios" rows="4" cols="40" rows="4" cols="40" maxlength="300"></textarea>
+                </p>
+
+                <p>
+                    <input type="checkbox" id="politicas" name="politicas" value="aceptadas" required>
+                    <label for="politicas">Acepto las politicas de alquiler</label>
+                </p>
+                </fieldset>
+
+                <p>
+                    <button type="submit">Enviar reserva</button>
+                </p>
+
+            </form>
+        </section>
+    <aside>
     <h3>Horario de atencion</h3>
     <dl>
         <dt>Lunes a Viernes:</dt>
@@ -20,9 +123,28 @@
         <dt>Sábados, Domingos y Festivos:</dt>
         <dd>6:00 AM - 2:00 PM</dd>
     </dl>
-
+   </aside>
+   <section>
     <h3>Contactanos mediante:</h3>
     <ul>
+        <li>El correo: <a href="mailto:MTBMD@gmail.com">MTBMD@gmail.com</a></li>
+   </section>
+    
+    </main>
+  
+        <footer>
+         <h3 id="Encuentranos">Encuentranos</h3>
+    <ul>
+        <li>
+            <strong>Nos puedes encontrar en:</strong> en la cl 104 #99-99
+        </li>
+    </ul>
+    <h3>Contactanos</h3>
+    <ul>
         <li>Correo: <a href="mailto:MTBMD@gmail.com">MTBMD@gmail.com</a></li>
+        <li>WhatsApp: <a href="tel: +573022020020">+57 302 202 0020</a></li>
+    </ul>
+    </footer>
+</body>
 </body>
 </html>
