@@ -63,3 +63,6 @@ tarifas.html       Solo h3             Corregir el h3 con el h2 en los puntos ne
 index.html         Solo h3             Corregir el h3 con el h2 en los puntos necesitados
 reservas.html      Solo h3             Corregir el h3 con el h2 en los puntos necesitados
 reservas.html      <li></li> solo      Borrar los <li></li> ya que no eran necesarios
+index.html         <li></li> solo      Borrar los <li></li> ya que no eran necesarios
+tarifas.html       <li></li> solo      Borrar los <li></li> ya que no eran necesarios
+
