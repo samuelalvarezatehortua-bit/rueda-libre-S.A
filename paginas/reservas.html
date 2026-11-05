@@ -4,21 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservas</title>
+    <link rel="stylesheet" href="../estilos/estilos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <img src="../img/Pasted image.png" alt="logotipo" width="200" height="200">
 
         <nav>
-            <a href="http://127.0.0.1:5500/index.html">Volver al inicio</a>
-            <a href="http://127.0.0.1:5500/paginas/tarifas.html">Ver tarifas</a>
-            <a href="#Encuentranos">Donde nos encuentras?</a>
+            <ul>
+                <li><a href="http://127.0.0.1:5500/index.html">Inicio</a></li>
+                <li><a href="http://127.0.0.1:5500/paginas/tarifas.html">Ver tarifas</a></li>
+                <li><a href="http://127.0.0.1:5500/paginas/reservas.html" class="activo" aria-current="page">Reservar ahora</a></li>
+                <li><a href="#Encuentranos">Donde nos encuentras?</a></li>
+            </ul>
         </nav>
     </header>
     
     <main>
         <section>
-            <h2>Formulario de reserva</h2>
+            <h1>Formulario de reserva</h1>
 
             <form action="procesar-reserva.php" method="post">
                 <fieldset>

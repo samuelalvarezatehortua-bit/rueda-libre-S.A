@@ -65,4 +65,51 @@ reservas.html      Solo h3             Corregir el h3 con el h2 en los puntos ne
 reservas.html      <li></li> solo      Borrar los <li></li> ya que no eran necesarios
 index.html         <li></li> solo      Borrar los <li></li> ya que no eran necesarios
 tarifas.html       <li></li> solo      Borrar los <li></li> ya que no eran necesarios
+Paleta del cliente
 
+| Color | Código | Uso propuesto |
+|---|---|---|
+| Verde Ruta | #1E7A4F | Botones y enlaces |
+| Naranja Pedal | #F39A2B | Destacados y botones secundarios |
+| Azul Noche | #14213D | Títulos y encabezado |
+| Crema | #FAF6EF | Fondo general |
+| Gris Asfalto | #5B6470 | Texto secundario |
+
+Combinaciones texto / fondo
+
+| Texto | Fondo | Ratio | Resultado | Uso recomendado |
+|---|---|---|---|---|
+| Azul Noche | Crema | 14.8:1 | Aprobado | Títulos y encabezado |
+| Gris Asfalto | Crema | 5.6:1 | Aprobado | Texto secundario |
+| Verde Ruta | Crema | 4.9:1 | Aprobado | Enlaces (con subrayado) |
+| Azul Noche | Naranja Pedal | 7.2:1 | Aprobado | Texto en botones secundarios y destacados |
+| Crema | Verde Ruta | 4.9:1 | Aprobado | Texto en botones principales |
+| Azul Noche | Verde Ruta | 3.0:1 | Solo texto grande | Evitar |
+| Gris Asfalto | Naranja Pedal | 2.7:1 | Reprobado | No usar |
+| Verde Ruta | Naranja Pedal | 2.4:1 | Reprobado | No usar |
+| Naranja Pedal | Crema | 2.1:1 | Reprobado | No usar como color de texto |
+| Blanco | Naranja Pedal | 2.2:1 | Reprobado | No usar |
+
+Comprobación de herencia (DevTools)
+
+- Elemento inspeccionado: `<p>` sin clase, hijo de `body`.
+- **Se hereda:** `color` (rgb(20, 33, 61)) y `font-family` (Open Sans). En Styles aparecen bajo "Inherited from body".
+- **No se hereda:** `background-color`. En Computed el párrafo muestra rgba(0, 0, 0, 0); el fondo Crema pertenece a `body`.
+- Conclusión: las propiedades de texto pasan a los hijos; las de caja y fondo no.
+- Evidencia: captura de Styles y Computed.
+
+Conflicto de cascada: la clase `.activo` no funciona
+
+- **Síntoma:** el enlace de la página actual no se ve en verde; solo cambia el grosor.
+- **Reglas en conflicto:**
+  - `#menu a { color: var(--gris-asfalto); }` → especificidad (1,0,1)
+  - `.activo { color: var(--verde-ruta); font-weight: 600; }` → especificidad (0,1,0)
+- **Causa:** ambas declaran `color` con el mismo origen y sin `!important`, así que decide la especificidad. Un ID (1) pesa más que una clase (0) en la primera columna, y gana `#menu a`. En DevTools, `color` de `.activo` aparece tachado; `font-weight` no, porque `#menu a` no lo declara.
+- **Solución:** `#menu a.activo` → (1,1,1), mayor que (1,0,1). Sin `!important` ni estilos en línea.
+- **Orden:** `#menu a:hover` y `#menu a:focus` también valen (1,1,1), por eso van después de `#menu a.activo`.
+- **Evidencia:** captura de Styles antes (declaración tachada) y después de la corrección.
+
+Estados e indicadores de foco
+- Menú, llamada a la acción, botones y campos con `:hover` y `:focus` revisados con `:hov`.
+- Recorrido con `Tab` en las tres páginas: el foco siempre es visible.
+- Contraste de todos los estados ≥ 4.5:1 (tabla en la sección de contraste).
