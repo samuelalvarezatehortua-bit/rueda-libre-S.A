@@ -59,15 +59,21 @@ strong,
   border-bottom: 3px solid transparent;
 }
 
+#menu a { color: var(--gris-asfalto); 
+}
+
+.activo { color: var(--verde-ruta); font-weight: 600; 
+}
+
 #menu a.activo {
-  color: var(--verde-ruta);
+  color: var(--gris-asfalto);
   font-weight: 600;
   border-bottom-color: var(--verde-ruta);
 }
 
 #menu a:hover,
 #menu a:focus {
-  background-color: var(--verde-ruta);
+  background-color: var(--gris-asfalto);
   color: var(--crema);
   border-bottom-color: var(--verde-ruta);
 }
