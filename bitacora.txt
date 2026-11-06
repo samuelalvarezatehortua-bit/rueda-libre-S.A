@@ -165,3 +165,20 @@ Un formulario conectado a un servicio real (la acción .php no corre en GitHub P
 Renombrar las imágenes y comprimirlas.
 Reducir el HTML repetido con una plantilla común.
 Añadir un enlace “Saltar al contenido” para teclado.
+
+El menú quedaba separado del nombre del negocio en el monitor del cliente, se amontonaba en el celular, y el pie era una columna larga incluso en pantallas anchas.
+
+Cambios
+Elemento	Propiedades	Efecto
+header	display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap	Marca y menú en extremos opuestos y centrados verticalmente
+#menu	display: flex; flex-wrap: wrap; gap	Separación uniforme sin márgenes ni inline-block; los enlaces bajan de línea
+footer	display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap	Tres bloques en fila, alineados por arriba
+.pie-bloque	flex: 1 1 14rem	Bloques de ancho parejo que bajan cuando no caben
+
+Decisiones
+Decisión	Propiedades	Razón
+Cuadrícula adaptable/	display: grid; grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr))/	Las columnas dependen del espacio, sin @media
+Separación uniforme/	gap: var(--espacio-l)/	Mismo espacio entre filas y columnas, de la escala de la semana 1
+Tarjeta en columna/	display: flex; flex-direction: column/	Contenido apilado dentro de la tarjeta
+Enlace al final/	.descripcion { flex-grow: 1 } y margin-top: auto/	“Reservar” alineado aunque las descripciones midan distinto
+Sin margen duplicado/	margin-bottom: 0 en .tarjeta-modelo/	El gap ya separa las tarjetas

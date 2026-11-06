@@ -119,7 +119,36 @@ main p {
   outline: var(--indicador-foco);
   outline-offset: 2px;
 }
+header {
+  display: flex;
+  justify-content: space-between;  /* marca en un extremo, menú en el otro */
+  align-items: center;             /* centrados verticalmente entre sí */
+  flex-wrap: wrap;                 /* si no caben, el menú baja debajo de la marca */
+  gap: var(--espacio-m);
+}
 
+.marca {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-s);
+  text-decoration: none;
+}
+
+.nombre-negocio {
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--azul-noche);
+}
+
+#menu {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;                 /* los enlaces bajan de línea en vez de desbordarse */
+  gap: var(--espacio-s) var(--espacio-m);  /* fila | columna */
+  margin: 0;
+  padding: 0;
+}
 
 /* ========== 4. COMPONENTES ========== */
 
@@ -266,6 +295,48 @@ caption {
   border: 2px solid var(--naranja-pedal);  /* NO se hereda */
   padding: var(--espacio-m);
 }
+/* --- Flota: cuadrícula adaptable --- */
+.cuadricula {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+  gap: var(--espacio-l);               /* misma separación en filas y columnas */
+}
+
+/* Cada tarjeta: columna flexible */
+.tarjeta-modelo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 0;                    /* el espacio lo da el gap, no el margen */
+}
+
+.tarjeta-modelo img {
+  aspect-ratio: 4 / 3;                 /* todas las fotos con la misma proporción */
+  object-fit: cover;
+}
+
+.tarjeta-modelo h3 {
+  margin: 0 0 var(--espacio-s);
+}
+
+.tarjeta-modelo .descripcion {
+  flex-grow: 1;                        /* absorbe el espacio sobrante */
+  margin: 0 0 var(--espacio-m);
+}
+
+.tarjeta-modelo .precio {
+  margin: 0 0 var(--espacio-m);
+  font-weight: 700;
+}
+
+.tarjeta-modelo .precio span {
+  font-weight: 400;
+}
+
+.tarjeta-modelo .boton-cta {
+  align-self: flex-start;              /* botón con su tamaño natural, al final */
+  margin-top: auto;
+}
 
 
 /* ========== 5. FORMULARIO ========== */
@@ -329,4 +400,25 @@ textarea:focus {
   border-color: var(--verde-ruta);
   outline: var(--indicador-foco);
   outline-offset: 2px;
+}
+/* --- Pie de página --- */
+footer {
+  display: flex;
+  flex-wrap: wrap;                 /* en pantallas angostas, los bloques bajan */
+  justify-content: space-between;  /* espacio uniforme entre bloques */
+  align-items: flex-start;         /* alineados por arriba */
+  gap: var(--espacio-l);
+  margin-top: var(--espacio-l);
+  padding-top: var(--espacio-m);
+  border-top: 2px solid var(--gris-asfalto);
+}
+
+.pie-bloque {
+  flex: 1 1 14rem;                 /* crece, se encoge y no baja de 14rem */
+}
+
+.pie-bloque ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }

@@ -11,8 +11,10 @@
 </head>
 <body>
     <header>
-        <img src="../img/Pasted image.png" alt="logotipo" width="200" height="200">
-
+        <a href="../index.html" class="marca">
+            <img src="../img/Pasted image.png" alt="Logotipo" width="80" height="80">
+            <span class="nombre-negocio">Rueda Libre</span>
+        </a>
         <nav>
             <ul id="menu">
                 <li><a href="http://127.0.0.1:5500/index.html">Inicio</a></li>
@@ -63,10 +65,13 @@
                         <label for="servicio">Servicio:</label><br>
                         <select name="servicio" id="servicio" required>
                             <option value="">-- Elige una opcion --</option>
+                            <option value="bicicleta infantil">Infantil</option>
                             <option value="bicicleta ciudad">Ciudad</option>
+                            <option value="bicicleta pegable">Ciudad pegable</option>
                             <option value="bicicleta mtb">Mountain</option>
-                            <option value="bicicleta electrica">Electrica</option>
                             <option value="bicicleta ruta">Ruta</option>
+                            <option value="bicicleta Tandem">Tandem</option>
+                            <option value="bicicleta electrica">Electrica</option>
                         </select>
                     </p>
                     </fieldset>
@@ -119,29 +124,33 @@
 
             </form>
         </section>
-    <aside>
-    <h2>Horario de atencion</h2>
-    <dl>
-        <dt>Lunes a Viernes:</dt>
-        <dd>7:00 AM - 7:00 PM</dd>
-        <dt>Sábados, Domingos y Festivos:</dt>
-        <dd>6:00 AM - 2:00 PM</dd>
-    </dl>
-   </aside>
     <a href="https://wa.me/573000000000" class="whatsapp-fijo" target="_blank" rel="noopener noreferrer">WhatsApp</a>
     </main>
   
-        <footer>
-         <h2 id="Encuentranos">Encuentranos</h2>
+    <footer>
+  <section class="pie-bloque">
+    <h2 id="Encuentranos">Rueda Libre</h2>
+    <p>Alquiler de bicicletas y tours en Medellín.</p>
+    <p><strong>Nos puedes encontrar en:</strong> cl 104 #99-99</p>
+  </section>
+
+  <section class="pie-bloque">
+    <h2>Contáctanos</h2>
     <ul>
-        <li>
-            <strong>Nos puedes encontrar en:</strong> en la cl 104 #99-99
-        </li>
+      <li>Correo: <a href="mailto:MTBMD@gmail.com">MTBMD@gmail.com</a></li>
+      <li>WhatsApp: <a href="tel:+573022020020">+57 302 202 0020</a></li>
     </ul>
-    <h2>Contactanos</h2>
-    <ul>
-        <li>Correo: <a href="mailto:MTBMD@gmail.com">MTBMD@gmail.com</a></li>
-    </ul>
-    </footer>
+  </section>
+
+  <section class="pie-bloque">
+    <h2>Horario de atención</h2>
+    <dl>
+      <dt>Lunes a viernes:</dt>
+      <dd>7:00 AM - 7:00 PM</dd>
+      <dt>Sábados, domingos y festivos:</dt>
+      <dd>6:00 AM - 2:00 PM</dd>
+    </dl>
+  </section>
+</footer>
 </body>
 </html>
