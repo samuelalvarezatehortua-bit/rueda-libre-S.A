@@ -134,7 +134,7 @@ Etiqueta “Nuevo” con position: absolute dentro de una tarjeta con position: 
 Enlace de WhatsApp con position: fixed (bottom y right), target="_blank", foco visible y padding-bottom extra en body para no tapar el final.
 Hoja de estilos reorganizada por secciones: variables, base, navegación, componentes y formulario; reglas duplicadas eliminadas y selectores agrupados.
 Revisión final: DevTools (tachados, 404, fuentes, imágenes), recorrido con Tab y validación del formulario.
-Publicación de v1.0 en GitHub Pages: URL: ________
+Publicación de v1.0 en GitHub Pages: URL: https://github.com/samuelalvarezatehortua-bit/rueda-libre-S.A.git
 
 
 Resumen de la semana
