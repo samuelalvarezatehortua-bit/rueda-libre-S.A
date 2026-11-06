@@ -118,3 +118,50 @@ Propiedad	Padre	Hijos	¿Se hereda?	Observación
 color (--gris-asfalto)	section.tarifa	p	Sí	Los párrafos toman el gris del padre
 color	section.tarifa	h2	No se aplica	La regla directa h1, h2, h3 tiene prioridad sobre la herencia
 border (2px solid --naranja-pedal)	section.tarifa	h2, p	No	El borde rodea solo la sección
+
+Elemento	Cambio	Propiedades usadas
+Todos los elementos/ El ancho incluye relleno y borde/	*, *::before, *::after { box-sizing: border-box; }
+Contenido principal (main)/	Ancho limitado y centrado/	max-width: 60rem; margin: 0 auto;
+Portada (.portada)/	Altura mínima relativa a la ventana/	min-height: 60vh;
+Servicios (.tarjeta)/	Tarjeta con relleno, borde, esquinas redondeadas y separación/	padding: var(--espacio-m); border: 2px solid; border-radius: 0.75rem; margin-bottom: var(--espacio-l);
+Imagen de tarjeta/	Ocupa todo el ancho de la tarjeta/	width: 100%; height: auto;
+Tablas/	Relleno en celdas, bordes y encabezado con fondo de marca/	th, td { padding; border }, th { background-color: var(--azul-noche); color: var(--crema); }
+Formulario/	Etiqueta sobre el campo, campos a todo el ancho, grupos separados/	label { display: block; }, input, select, textarea { display: block; width: 100%; }, fieldset { margin-bottom }
+Botón/	Relleno generoso/	padding: var(--espacio-m) var(--espacio-l);
+Menú/	Opciones en una fila/	#menu { display: flex; gap: var(--espacio-m); }
+
+Etiqueta “Nuevo” con position: absolute dentro de una tarjeta con position: relative; no desplaza el contenido.
+Enlace de WhatsApp con position: fixed (bottom y right), target="_blank", foco visible y padding-bottom extra en body para no tapar el final.
+Hoja de estilos reorganizada por secciones: variables, base, navegación, componentes y formulario; reglas duplicadas eliminadas y selectores agrupados.
+Revisión final: DevTools (tachados, 404, fuentes, imágenes), recorrido con Tab y validación del formulario.
+Publicación de v1.0 en GitHub Pages: URL: ________
+
+
+Resumen de la semana
+MiniReto	Qué construí	Qué mejoraría
+1. Kilómetro 0	Repositorio, carpetas, index.html base y bitácora	Nombres de archivos sin espacios desde el inicio
+2. La vitrina	Inicio con listas, imágenes y enlaces	Cerrar bien todas las listas anidadas
+3. Tarifas claras	Tablas de tarifas y recorridos con rutas relativas	scope en todos los <th>
+4. Rueda Libre v0.1	Reservas inicial, menú y pie comunes	Evitar duplicar bloques en cada página
+5. Estructura con significado	header, nav, main, section, article, aside, footer	Revisar un solo <main> y títulos en orden
+6. Formulario	fieldset, legend, label y controles	Un solo <legend> por <fieldset> e ids únicos
+7. Validación y teclado	required, pattern, min/max, uso con Tab	Validar también en el servidor
+8. Accesibilidad y publicación	Auditoría, mapa de contraste, primera publicación	Probar con un lector de pantalla
+9. Identidad	Hoja externa, variables, fuentes y paleta	Cargar las mismas fuentes en las tres páginas
+10. Navegación con estados	.activo, :hover, :focus, conflicto de especificidad resuelto sin !important	Menú con todos los estados probados con :hov
+11. Modelo de caja	border-box, max-width en rem, tarjetas, tablas, formulario	Medir cada componente en Computed
+12. Lanzamiento	Posicionamiento, limpieza, revisión final y v1.0	Diseño responsive y formulario conectado a un servicio real
+
+
+Pruebas, decisiones y mediciones
+Decisión: el CTA y WhatsApp usan clases propias, para no pelear con #menu a (especificidad 1,0,1).
+Decisión: position: absolute para la etiqueta (no afecta el flujo) y fixed para WhatsApp (siempre visible).
+Medición: ancho de tarjeta con content-box vs border-box, registrado en el MiniReto 11.
+Prueba: recorrido con Tab en las tres páginas, sin perder el foco. Resultado: ______
+Prueba: errores 404 en Network. Resultado: ______
+Qué mejoraría (semana 2)
+Diseño responsive con @media para móviles.
+Un formulario conectado a un servicio real (la acción .php no corre en GitHub Pages).
+Renombrar las imágenes y comprimirlas.
+Reducir el HTML repetido con una plantilla común.
+Añadir un enlace “Saltar al contenido” para teclado.

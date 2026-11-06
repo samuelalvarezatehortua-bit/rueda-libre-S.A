@@ -1,18 +1,38 @@
+/* ==========================================================
+   RUEDA LIBRE v1.0 - Hoja de estilos
+   Secciones: 1. Variables | 2. Base | 3. Navegación |
+              4. Componentes | 5. Formulario
+   ========================================================== */
+
+
+/* ========== 1. VARIABLES ========== */
 :root {
+  /* Paleta de marca */
   --verde-ruta: #1E7A4F;
   --naranja-pedal: #F39A2B;
   --azul-noche: #14213D;
   --crema: #FAF6EF;
   --gris-asfalto: #5B6470;
 
+  /* Tipografías */
   --fuente-titulos: "Montserrat", Arial, sans-serif;
   --fuente-texto: "Open Sans", Arial, sans-serif;
 
+  /* Escala de espaciado */
   --espacio-s: 0.5rem;
   --espacio-m: 1rem;
   --espacio-l: 2rem;
 
+  /* Indicador de foco */
   --indicador-foco: 3px solid var(--azul-noche);
+}
+
+
+/* ========== 2. BASE ========== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
@@ -21,9 +41,12 @@ body {
   color: var(--azul-noche);
   background-color: var(--crema);
   padding: var(--espacio-m);
+  padding-bottom: 5rem; /* espacio para que el botón de WhatsApp no tape el final */
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: var(--fuente-titulos);
   font-weight: 700;
   font-style: normal;
@@ -35,8 +58,15 @@ a {
   text-decoration: underline;
 }
 
-.secundario {
-  color: var(--gris-asfalto);
+a:hover,
+a:focus {
+  color: var(--azul-noche);
+  text-decoration-thickness: 3px;
+}
+
+a:focus {
+  outline: var(--indicador-foco);
+  outline-offset: 2px;
 }
 
 strong,
@@ -44,6 +74,18 @@ strong,
   font-weight: 600;
 }
 
+main {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: var(--espacio-m);
+}
+
+main p {
+  max-width: 45rem;
+}
+
+
+/* ========== 3. NAVEGACIÓN ========== */
 #menu {
   list-style: none;
   display: flex;
@@ -59,18 +101,13 @@ strong,
   border-bottom: 3px solid transparent;
 }
 
-#menu a { color: var(--gris-asfalto); 
-}
-
-.activo { color: var(--verde-ruta); font-weight: 600; 
-}
-
+/* Página actual: (1,1,1) supera a "#menu a" (1,0,1) sin usar !important */
 #menu a.activo {
-  color: var(--gris-asfalto);
   font-weight: 600;
   border-bottom-color: var(--verde-ruta);
 }
 
+/* Va después de .activo para que el hover/foco se vea también en el enlace activo */
 #menu a:hover,
 #menu a:focus {
   background-color: var(--gris-asfalto);
@@ -83,6 +120,10 @@ strong,
   outline-offset: 2px;
 }
 
+
+/* ========== 4. COMPONENTES ========== */
+
+/* --- Botón de llamada a la acción --- */
 .boton-cta {
   display: inline-block;
   padding: var(--espacio-s) var(--espacio-l);
@@ -104,12 +145,13 @@ strong,
   outline-offset: 3px;
 }
 
+/* --- Botón de formulario --- */
 button {
   font-family: inherit;
   background-color: var(--naranja-pedal);
   color: var(--azul-noche);
   border: none;
-  padding: var(--espacio-s) var(--espacio-m);
+  padding: var(--espacio-m) var(--espacio-l);
   border-radius: 0.5rem;
 }
 
@@ -124,6 +166,121 @@ button:focus {
   outline-offset: 2px;
 }
 
+/* --- Portada --- */
+.portada {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--espacio-l);
+}
+
+/* --- Tarjetas de servicio --- */
+.tarjeta {
+  padding: var(--espacio-m);
+  margin-bottom: var(--espacio-l);
+  border: 2px solid var(--gris-asfalto);
+  border-radius: 0.75rem;
+  background-color: #fff;
+}
+
+.tarjeta img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: var(--espacio-m);
+}
+
+/* Etiqueta "Nuevo": la tarjeta es el punto de referencia */
+.tarjeta-nuevo {
+  position: relative;
+}
+
+.etiqueta-nuevo {
+  position: absolute;
+  top: var(--espacio-s);
+  right: var(--espacio-s);
+  padding: 0.25rem var(--espacio-s);
+  background-color: var(--naranja-pedal);
+  color: var(--azul-noche);
+  font-weight: 700;
+  border-radius: 0.5rem;
+}
+
+/* --- Tablas --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: var(--espacio-l);
+}
+
+th,
+td {
+  padding: var(--espacio-s) var(--espacio-m);
+  border: 1px solid var(--gris-asfalto);
+  text-align: left;
+}
+
+th {
+  background-color: var(--azul-noche);
+  color: var(--crema);
+}
+
+caption {
+  padding: var(--espacio-s);
+  font-weight: 700;
+}
+
+/* --- Enlace fijo de WhatsApp --- */
+.whatsapp-fijo {
+  position: fixed;
+  bottom: var(--espacio-m);
+  right: var(--espacio-m);
+  z-index: 100;
+  padding: var(--espacio-s) var(--espacio-m);
+  background-color: var(--verde-ruta);
+  color: var(--crema);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 0.5rem;
+}
+
+.whatsapp-fijo:hover,
+.whatsapp-fijo:focus {
+  background-color: var(--azul-noche);
+  color: var(--crema);
+}
+
+.whatsapp-fijo:focus {
+  outline: var(--indicador-foco);
+  outline-offset: 2px;
+}
+
+/* --- Utilidades y prueba de herencia (bitácora) --- */
+.secundario {
+  color: var(--gris-asfalto);
+}
+
+.tarifa {
+  color: var(--gris-asfalto);              /* SE HEREDA */
+  border: 2px solid var(--naranja-pedal);  /* NO se hereda */
+  padding: var(--espacio-m);
+}
+
+
+/* ========== 5. FORMULARIO ========== */
+form fieldset {
+  margin-bottom: var(--espacio-l);
+  padding: var(--espacio-m);
+  border: 2px solid var(--gris-asfalto);
+  border-radius: 0.5rem;
+}
+
+form label {
+  display: block;
+  margin-bottom: var(--espacio-s);
+}
+
 input,
 select,
 textarea {
@@ -131,6 +288,33 @@ textarea {
   color: var(--azul-noche);
   border: 2px solid var(--gris-asfalto);
   padding: var(--espacio-s);
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="tel"],
+form input[type="date"],
+form input[type="number"],
+form select,
+form textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: var(--espacio-m);
+}
+
+/* Radio y checkbox: etiqueta al lado, sin ancho completo */
+form input[type="radio"],
+form input[type="checkbox"] {
+  display: inline-block;
+  width: auto;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+form input[type="radio"] + label,
+form input[type="checkbox"] + label {
+  display: inline-block;
+  margin-right: var(--espacio-m);
 }
 
 input:hover,
@@ -145,11 +329,4 @@ textarea:focus {
   border-color: var(--verde-ruta);
   outline: var(--indicador-foco);
   outline-offset: 2px;
-}
-
-/* Prueba de herencia (bitácora) */
-.tarifa {
-  color: var(--gris-asfalto);              /* SE HEREDA */
-  border: 2px solid var(--naranja-pedal);  /* NO se hereda */
-  padding: var(--espacio-m);
 }

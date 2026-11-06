@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="../estilos/estilos.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <img src="../img/Pasted image.png" alt="logotipo" width="200" height="200">
 
         <nav>
-            <ul>
+            <ul id="menu">
                 <li><a href="http://127.0.0.1:5500/index.html">Inicio</a></li>
                 <li><a href="http://127.0.0.1:5500/paginas/tarifas.html">Ver tarifas</a></li>
                 <li><a href="http://127.0.0.1:5500/paginas/reservas.html" class="activo" aria-current="page">Reservar ahora</a></li>
@@ -69,8 +69,9 @@
                             <option value="bicicleta ruta">Ruta</option>
                         </select>
                     </p>
-
-                <legend>Plan</legend>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Plan</legend>
                 <p>
                 <input type="radio" id="plan-hora" name="plan" value="1-hora" required>
                 <label for="plan-hora">1 hora</label>
@@ -81,9 +82,10 @@
                 <input type="radio" id="plan-dia" name="plan" value="dia-completo">
                 <label for="plan-dia">Dia completo</label>
                 </p>
-
+                    </fieldset>
+                    <fieldset>
                         <legend>Tour guiado</legend>
-                        <label for="servicio">Servicio:</label><br>
+                        <label for="tour">Servicio:</label><br>
                         <select name="servicio" id="servicio" required>
                             <option value="">-- Elige una opcion --</option>
                             <option value="tour rio y parque">Rio y parques</option>
@@ -95,7 +97,6 @@
                 <label for="cantidad">Cantidad de bicicletas:</label><br>
                 <input type="number" id="cantidad" name="cantidad" min="1" max="6" value="1" required>
             </p>
-
                     </fieldset>
 
                     <fieldset>
@@ -103,7 +104,7 @@
 
                     <p>
                         <label for="comentarios">Comentarios:</label><br>
-                        <textarea id="comentarios" name="comentarios" rows="4" cols="40" rows="4" cols="40" maxlength="300"></textarea>
+                        <textarea id="comentarios" name="comentarios" rows="4" cols="40" maxlength="300"></textarea>
                     </p>
 
                     <p>
@@ -127,12 +128,7 @@
         <dd>6:00 AM - 2:00 PM</dd>
     </dl>
    </aside>
-   <section>
-    <h2>Contactanos mediante:</h2>
-    <ul>
-        <li>El correo: <a href="mailto:MTBMD@gmail.com">MTBMD@gmail.com</a></li>
-   </section>
-    
+    <a href="https://wa.me/573000000000" class="whatsapp-fijo" target="_blank" rel="noopener noreferrer">WhatsApp</a>
     </main>
   
         <footer>
@@ -145,9 +141,7 @@
     <h2>Contactanos</h2>
     <ul>
         <li>Correo: <a href="mailto:MTBMD@gmail.com">MTBMD@gmail.com</a></li>
-        <li>WhatsApp: <a href="tel: +573022020020">+57 302 202 0020</a></li>
     </ul>
     </footer>
-</body>
 </body>
 </html>
