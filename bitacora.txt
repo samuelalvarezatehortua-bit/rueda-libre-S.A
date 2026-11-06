@@ -113,3 +113,8 @@ Estados e indicadores de foco
 - Menú, llamada a la acción, botones y campos con `:hover` y `:focus` revisados con `:hov`.
 - Recorrido con `Tab` en las tres páginas: el foco siempre es visible.
 - Contraste de todos los estados ≥ 4.5:1 (tabla en la sección de contraste).
+
+Propiedad	Padre	Hijos	¿Se hereda?	Observación
+color (--gris-asfalto)	section.tarifa	p	Sí	Los párrafos toman el gris del padre
+color	section.tarifa	h2	No se aplica	La regla directa h1, h2, h3 tiene prioridad sobre la herencia
+border (2px solid --naranja-pedal)	section.tarifa	h2, p	No	El borde rodea solo la sección

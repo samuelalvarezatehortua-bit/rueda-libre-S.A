@@ -146,3 +146,10 @@ textarea:focus {
   outline: var(--indicador-foco);
   outline-offset: 2px;
 }
+
+/* Prueba de herencia (bitácora) */
+.tarifa {
+  color: var(--gris-asfalto);              /* SE HEREDA */
+  border: 2px solid var(--naranja-pedal);  /* NO se hereda */
+  padding: var(--espacio-m);
+}
