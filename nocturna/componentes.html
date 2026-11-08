@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kit de componentes | Rueda Nocturna</title>
+    <link rel="stylesheet" href="src/output.css">
+  </head>
+  <body class="min-h-screen bg-slate-950 text-slate-100">
+    <header class="border-b border-slate-800 bg-slate-950 px-6 py-8 sm:px-10">
+      <div class="mx-auto w-full max-w-5xl space-y-3">
+        <a href="index.html" class="text-sm font-bold uppercase tracking-[0.2em] text-amber-300 hover:text-amber-200 focus:outline-none focus:ring-4 focus:ring-amber-200 focus:ring-offset-2 focus:ring-offset-slate-950">Rueda Libre</a>
+        <h1 class="text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl">Kit de componentes</h1>
+        <p class="max-w-2xl text-lg leading-8 text-slate-400">Botones, card, alertas y campos listos para la landing de Rueda Nocturna.</p>
+      </div>
+    </header>
+
+    <main class="mx-auto w-full max-w-5xl space-y-16 px-6 py-12 sm:px-10">
+      <section class="space-y-6" aria-labelledby="botones-titulo">
+        <div class="space-y-2">
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-amber-300">Componente 01</p>
+          <h2 id="botones-titulo" class="text-3xl font-black tracking-tight text-white">Botones</h2>
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <button type="button" class="rounded-2xl bg-amber-400 px-6 py-3 text-base font-extrabold text-slate-950 shadow-lg transition hover:bg-amber-300 focus:outline-none focus:ring-4 focus:ring-amber-200 focus:ring-offset-2 focus:ring-offset-slate-950 focus-visible:outline-4 focus-visible:outline-amber-200 focus-visible:outline-offset-2">Principal</button>
+          <button type="button" class="rounded-2xl bg-emerald-500 px-6 py-3 text-base font-extrabold text-white shadow-lg transition hover:bg-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-slate-950 focus-visible:outline-4 focus-visible:outline-emerald-200 focus-visible:outline-offset-2">Secundario</button>
+          <button type="button" class="rounded-2xl border-2 border-amber-300 px-6 py-3 text-base font-extrabold text-amber-200 shadow-lg transition hover:bg-amber-300 hover:text-slate-950 focus:outline-none focus:ring-4 focus:ring-amber-200 focus:ring-offset-2 focus:ring-offset-slate-950 focus-visible:outline-4 focus-visible:outline-amber-200 focus-visible:outline-offset-2">Contorno</button>
+        </div>
+      </section>
+
+      <section class="space-y-6" aria-labelledby="card-titulo">
+        <div class="space-y-2">
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-amber-300">Componente 02</p>
+          <h2 id="card-titulo" class="text-3xl font-black tracking-tight text-white">Card de ruta</h2>
+        </div>
+        <article class="max-w-2xl overflow-hidden rounded-3xl border border-slate-700 bg-slate-900 shadow-xl transition hover:border-amber-300 hover:shadow-2xl">
+          <img src="../img/Pasted%20image%20(2).png" alt="Bicicleta preparada para recorrer las Luces del Centro" class="h-56 w-full object-cover">
+          <div class="space-y-6 p-6 sm:p-8">
+            <span class="inline-flex rounded-full bg-emerald-100 px-3 py-1 text-sm font-bold text-emerald-900">Nivel: Fácil</span>
+            <h3 class="text-2xl font-black tracking-tight text-white">Luces del Centro</h3>
+            <dl class="grid gap-4 text-sm sm:grid-cols-3">
+              <div><dt class="font-semibold uppercase tracking-wide text-slate-400">Distancia</dt><dd class="mt-1 text-lg font-bold text-white">10 km</dd></div>
+              <div><dt class="font-semibold uppercase tracking-wide text-slate-400">Duración</dt><dd class="mt-1 text-lg font-bold text-white">2 h</dd></div>
+              <div><dt class="font-semibold uppercase tracking-wide text-slate-400">Encuentro</dt><dd class="mt-1 text-lg font-bold text-white">Sede Rueda Libre</dd></div>
+            </dl>
+            <div class="flex flex-wrap items-center justify-between gap-4 border-t border-slate-700 pt-5">
+              <p class="text-2xl font-black text-amber-300">$55.000</p>
+              <a href="index.html#inscripcion" class="inline-flex rounded-2xl bg-amber-400 px-6 py-3 text-base font-extrabold text-slate-950 shadow-lg transition hover:bg-amber-300 focus:outline-none focus:ring-4 focus:ring-amber-200 focus:ring-offset-2 focus:ring-offset-slate-900 focus-visible:outline-4 focus-visible:outline-amber-200 focus-visible:outline-offset-2">Inscríbete</a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="space-y-6" aria-labelledby="alertas-titulo">
+        <div class="space-y-2">
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-amber-300">Componente 03</p>
+          <h2 id="alertas-titulo" class="text-3xl font-black tracking-tight text-white">Alertas</h2>
+        </div>
+        <div class="space-y-4">
+          <div class="rounded-2xl border border-sky-300 border-l-4 bg-sky-950 p-5 text-sky-100 shadow-lg" role="note">
+            <h3 class="font-black text-sky-200">Información</h3>
+            <p class="mt-1 leading-7">Llega 15 minutos antes para ajustar la bicicleta y recibir las luces LED.</p>
+          </div>
+          <div class="rounded-2xl border border-emerald-300 border-l-4 bg-emerald-950 p-5 text-emerald-100 shadow-lg" role="status">
+            <h3 class="font-black text-emerald-200">Éxito</h3>
+            <p class="mt-1 leading-7">Tu cupo para la próxima Rueda Nocturna está listo para confirmar.</p>
+          </div>
+          <div class="rounded-2xl border border-amber-300 border-l-4 bg-amber-950 p-5 text-amber-100 shadow-lg" role="alert">
+            <h3 class="font-black text-amber-200">Advertencia</h3>
+            <p class="mt-1 leading-7">La ruta puede cambiar si las condiciones climáticas no son seguras.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="space-y-6" aria-labelledby="formulario-titulo">
+        <div class="space-y-2">
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-amber-300">Componente 04</p>
+          <h2 id="formulario-titulo" class="text-3xl font-black tracking-tight text-white">Campos de formulario</h2>
+        </div>
+        <form class="max-w-2xl space-y-6 rounded-3xl border border-slate-700 bg-slate-900 p-6 shadow-xl sm:p-8">
+          <div class="space-y-2">
+            <label for="correo" class="text-sm font-bold text-slate-200">Correo electrónico</label>
+            <input id="correo" name="correo" type="email" placeholder="tu@correo.com" aria-describedby="correo-ayuda" class="w-full rounded-2xl border-2 border-slate-600 bg-slate-950 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:border-amber-300 focus:outline-none focus:ring-4 focus:ring-amber-200 focus:ring-offset-2 focus:ring-offset-slate-900">
+            <p id="correo-ayuda" class="text-sm leading-6 text-slate-400">Usaremos este correo para confirmar tu cupo.</p>
+          </div>
+          <div class="space-y-2">
+            <label for="celular" class="text-sm font-bold text-slate-200">Celular</label>
+            <input id="celular" name="celular" type="tel" placeholder="300 000 0000" aria-describedby="celular-ayuda" class="w-full rounded-2xl border-2 border-slate-600 bg-slate-950 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:border-amber-300 focus:outline-none focus:ring-4 focus:ring-amber-200 focus:ring-offset-2 focus:ring-offset-slate-900">
+            <p id="celular-ayuda" class="text-sm leading-6 text-slate-400">Incluye el indicativo si tu número no es de Colombia.</p>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-900 px-6 py-8 text-center text-sm text-slate-400 sm:px-10">
+      <p class="font-semibold text-slate-200">Rueda Libre</p>
+      <p class="mt-2">Kit de componentes de Rueda Nocturna</p>
+    </footer>
+  </body>
+</html>

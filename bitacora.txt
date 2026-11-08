@@ -338,3 +338,42 @@ Capturas de personalización
 
 Lanzamiento v2.0
 El commit de lanzamiento de esta personalización se crea sobre la rama `v2.0-beta`. El push y la publicación en GitHub Pages requieren autenticación GitHub válida en la sesión; el repositorio local queda listo para publicar la rama con `git push -u origin v2.0-beta`.
+
+
+MINIRETO: PROTOTIPO NOCTURNO CON TAILWIND
+
+Para el prototipo `nocturna/prototipo.html` se cargó Tailwind mediante su Play CDN: `https://cdn.tailwindcss.com`. La sección principal se construyó sin `<style>`, sin `style=""` y sin clases de Bootstrap; toda la apariencia está expresada con utilidades de espaciado, tamaños, colores y tipografía.
+
+Comparación del botón "Inscríbete"
+
+- En Bootstrap, durante la semana 2, el botón se construyó combinando clases de componente: `<a class="btn btn-primary btn-lg">Reservar ahora</a>`. La clase `btn` aporta la base compartida, `btn-primary` aplica la variante y `btn-lg` el tamaño; la identidad se ajustó después mediante variables `--bs-btn-*` en `styles.css`.
+- Hoy, con Tailwind, el botón se construyó directamente con utilidades: `<a class="inline-flex rounded-full bg-amber-400 px-7 py-4 text-base font-extrabold text-slate-950 shadow-lg ...">Inscríbete</a>`. Cada clase describe una decisión concreta de layout, espaciado, color, tipografía, sombra, interacción y foco.
+- Diferencia clave: Bootstrap es un framework orientado a componentes predefinidos y variantes (`btn`, `btn-primary`, `btn-lg`), mientras Tailwind es utility-first: no entrega un botón terminado, sino piezas pequeñas que se combinan en el HTML para formar el diseño.
+
+
+MINIRETO: TAILWIND CLI Y COMPONENTE BOTÓN
+
+Dentro de `nocturna/` se instalaron `tailwindcss` y `@tailwindcss/cli` como dependencias de desarrollo. `src/input.css` contiene `@import "tailwindcss";` y la CLI se ejecutó con `npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch`. La página de producción `nocturna/index.html` enlaza `src/output.css` y ya no usa el Play CDN. `node_modules/` queda excluido mediante `.gitignore`, mientras `package.json`, `package-lock.json` y `src/output.css` sí se versionan.
+
+Verificación de clases generadas
+- `bg-amber-400` sí aparece en `src/output.css` porque se usa en el botón principal y en la etiqueta de campaña de `index.html`.
+- `bg-pink-500` no aparece porque no se usa en ningún HTML escaneado por Tailwind. La CLI genera sólo las utilidades detectadas en el contenido, reduciendo el CSS final frente a incluir todas las clases posibles.
+
+Componente botón
+- Principal: fondo ámbar, texto oscuro, sombra y estados `hover:bg-amber-300` y `focus:ring-4`.
+- Secundario: fondo esmeralda, texto claro, sombra y estados `hover:bg-emerald-400` y `focus:ring-4`.
+- Contorno: borde ámbar, cambio de fondo/color en hover y `focus:ring-4`.
+Los tres botones incluyen un indicador adicional `focus-visible:outline-*`; la prueba con Tab confirmó foco visible en cada variante.
+
+
+MINIRETO: KIT DE COMPONENTES
+
+La página `nocturna/componentes.html` reúne los cuatro componentes del kit y enlaza el CSS generado por la CLI (`src/output.css`). Las reglas compartidas quedan registradas así:
+
+- Radio de superficie: `rounded-3xl` para cards y formularios; `rounded-2xl` para botones, alertas y campos; `rounded-full` sólo para etiquetas de nivel.
+- Espaciado: `space-y-6` para bloques, `p-6`/`sm:p-8` para superficies, `px-6 py-3` para botones y `p-5` para alertas.
+- Colores: fondo general `bg-slate-950`, superficies `bg-slate-900`, texto principal `text-white`, texto secundario `text-slate-400`, acento principal `amber` y secundario `emerald`.
+- Profundidad: `shadow-lg` en controles y alertas, `shadow-xl` en superficies y `hover:shadow-2xl` en cards.
+- Interacción: cada botón y campo tiene variantes `hover:` o `focus:` con anillo visible; todos los controles se pueden recorrer con Tab.
+
+Las alertas comparten las mismas clases base de radio, espaciado, borde y sombra; sólo cambian sus colores y mensajes. La alerta de éxito usa `role="status"` para comunicar el aviso a lectores de pantalla. Los campos tienen `label` visible asociado mediante `for`/`id`, texto de ayuda con `aria-describedby` y foco visible.
