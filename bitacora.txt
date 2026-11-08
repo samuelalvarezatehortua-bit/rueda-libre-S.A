@@ -223,3 +223,29 @@ Anota los que viste tú. Estos son los que es probable que aparezcan, con su cau
 4	Los bloques del pie quedaban estirados en móvil	flex: 1 1 14rem se aplicaba a la altura al estar en columna	La regla flex pasó a la media query de tablet, cuando el pie es una fila
 5	Imágenes más anchas que su contenedor	Atributos width fijos sin regla fluida	img { max-width: 100%; height: auto } global
 
+Datos de la comparación
+Medida	Versión CSS propio	Versión Bootstrap
+Tiempo para construir la flota	 aprox 45min (ayer) 	20 min
+CSS de distribución de la flota	20 líneas (10 declaraciones)	0 líneas
+Clases de grilla usadas	no aplica	31 (3 + 28)
+Columnas a 360 / 768 / 1280 px	1 / 2 / 4	1 / 2 / 4
+De dónde salen los números
+
+20 líneas y 10 declaraciones (tu CSS):
+
+Regla	Líneas	Declaraciones
+.cuadricula (display, grid-template-columns, gap)	5	3
+.tarjeta-modelo (display, flex-direction, justify-content)	5	3
+.tarjeta-modelo .descripcion (flex-grow)	3	1
+.tarjeta-modelo .boton-cta (align-self, margin-top)	4	2
+margin-bottom: 0 en .tarjeta-modelo	3	1
+Total	20	10
+
+Conté solo lo que distribuye: columnas, separación y posición. Dejé fuera relleno, bordes, aspect-ratio y tipografía.
+
+31 clases de grilla (Bootstrap): container, row y g-4 son 3, más 4 clases por columna (col-12 col-sm-6 col-lg-4 col-xl-3) por 7 modelos, que son 28. Si además cuentas las utilidades que igualan la altura y dejan “Reservar” al final (h-100, d-flex, flex-column, mt-auto, align-self-start), son 5 por tarjeta, o 35 más, y el total sube a 66. Conviene anotar ambas cifras en la bitácora, porque es la comparación justa con tus 20 líneas.
+
+Columnas:
+
+Bootstrap: menos de 576 px es 1 columna, desde 576 px (sm) son 2, y desde 1200 px (xl) son 4. Eso da 1 / 2 / 4.
+Tu versión: mis cálculos con minmax(16rem, 1fr), gap de 2rem y el main de 75rem en escritorio dan 1 / 2 / 4. A 1280 px puede salirte 3 si hay barra de scroll que reste ancho, así que confírmalo en DevTools y corrige la celda si ves otro número.

@@ -1,15 +1,18 @@
 /* ==========================================================
-   RUEDA LIBRE v1.5 - Hoja de estilos (mobile-first)
-   Los estilos sin media query describen el MÓVIL (una columna).
+   RUEDA LIBRE v2 - Hoja de estilos propia
+   Se carga DESPUÉS de bootstrap.min.css (index.html).
+   Tarifas y reservas todavía no usan Bootstrap: las reglas
+   marcadas con "USADA POR TARIFAS/RESERVAS" deben quedarse.
    Secciones:
      1. Variables
-     2. Base
-     3. Encabezado y navegación
-     4. Componentes
-     5. Pie de página
-     6. Formulario
-     7. Tablet  (min-width: 768px)
-     8. Escritorio (min-width: 1200px)
+     2. Puente con Bootstrap
+     3. Base
+     4. Encabezado y navegación
+     5. Componentes
+     6. Pie de página
+     7. Formulario y reservas
+     8. Tablet  (min-width: 768px)
+     9. Escritorio (min-width: 1200px)
    ========================================================== */
 
 
@@ -37,7 +40,29 @@
 }
 
 
-/* ========== 2. BASE (móvil) ========== */
+/* ========== 2. PUENTE CON BOOTSTRAP ========== */
+/* Bootstrap lee sus colores y fuentes de variables --bs-*.
+   Al redefinirlas aquí (mismo selector, cargada después) la marca
+   se mantiene en utilidades como text-success, text-bg-warning
+   o text-primary-emphasis, sin usar !important. */
+:root {
+  --bs-body-font-family: var(--fuente-texto);
+  --bs-body-color: var(--azul-noche);
+  --bs-body-color-rgb: 20, 33, 61;
+  --bs-body-bg: var(--crema);
+  --bs-heading-color: var(--azul-noche);
+  --bs-secondary-color: var(--gris-asfalto);
+
+  --bs-success: var(--verde-ruta);
+  --bs-success-rgb: 30, 122, 79;
+  --bs-warning: var(--naranja-pedal);
+  --bs-warning-rgb: 243, 154, 43;
+  --bs-primary-text-emphasis: var(--azul-noche);
+}
+
+
+/* ========== 3. BASE ========== */
+/* USADA POR TARIFAS/RESERVAS: Bootstrap ya trae box-sizing: border-box */
 *,
 *::before,
 *::after {
@@ -93,6 +118,8 @@ strong,
   font-weight: 600;
 }
 
+/* USADA POR TARIFAS/RESERVAS: en inicio, el <main class="container">
+   de Bootstrap fija el ancho máximo y el relleno lateral */
 main {
   max-width: 60rem;
   margin: 0 auto;
@@ -104,7 +131,7 @@ main p {
 }
 
 
-/* ========== 3. ENCABEZADO Y NAVEGACIÓN (móvil) ========== */
+/* ========== 4. ENCABEZADO Y NAVEGACIÓN (móvil) ========== */
 /* Móvil: nombre arriba y menú debajo, centrados */
 header {
   display: flex;
@@ -166,9 +193,9 @@ header {
 }
 
 
-/* ========== 4. COMPONENTES (móvil) ========== */
+/* ========== 5. COMPONENTES ========== */
 
-/* --- Botón de llamada a la acción --- */
+/* --- Botón de llamada a la acción (inicio, flota y reservas) --- */
 .boton-cta {
   display: inline-block;
   padding: var(--espacio-s) var(--espacio-l);
@@ -211,24 +238,8 @@ button:focus {
   outline-offset: 2px;
 }
 
-/* --- Portada: una columna en móvil (texto y luego foto) --- */
-.portada {
-  min-height: 60vh;
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
-  gap: var(--espacio-m);
-  padding: var(--espacio-m);
-}
-
-.portada img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 0.75rem;
-}
-
-/* --- Tarjetas --- */
+/* --- Tarjeta propia ---
+   USADA POR RESERVAS (aside de contacto). Inicio ya usa .card de Bootstrap */
 .tarjeta {
   padding: var(--espacio-m);
   margin-bottom: var(--espacio-l);
@@ -237,90 +248,11 @@ button:focus {
   background-color: #fff;
 }
 
-.tarjeta img {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin-bottom: var(--espacio-m);
-}
-
-/* Dentro de una cuadrícula, el gap separa las tarjetas: se anula el margen */
-.tarjeta-modelo,
-.galeria .tarjeta,
 .reservas-layout .tarjeta {
   margin-bottom: 0;
 }
 
-/* Etiqueta "Nuevo": la tarjeta es el punto de referencia */
-.tarjeta-nuevo {
-  position: relative;
-}
-
-.etiqueta-nuevo {
-  position: absolute;
-  top: var(--espacio-s);
-  right: var(--espacio-s);
-  padding: var(--espacio-xs) var(--espacio-s);
-  background-color: var(--naranja-pedal);
-  color: var(--azul-noche);
-  font-weight: 700;
-  border-radius: 0.5rem;
-}
-
-/* --- Flota: cuadrícula adaptable (sin media queries) --- */
-.cuadricula {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
-  gap: var(--espacio-l);
-}
-
-.tarjeta-modelo {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.tarjeta-modelo img {
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
-.tarjeta-modelo h3 {
-  margin: 0 0 var(--espacio-s);
-}
-
-.tarjeta-modelo .descripcion {
-  flex-grow: 1;
-  margin: 0 0 var(--espacio-m);
-}
-
-.tarjeta-modelo .precio {
-  margin: 0 0 var(--espacio-m);
-  font-weight: 700;
-}
-
-.tarjeta-modelo .precio span {
-  font-weight: 400;
-}
-
-.tarjeta-modelo .boton-cta {
-  align-self: flex-start;
-  margin-top: auto;
-}
-
-/* --- Galería de rutas: una columna en móvil --- */
-.galeria {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--espacio-l);
-}
-
-.galeria .tarjeta img {
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
-/* --- Tablas: relleno y letra reducidos para que quepan sin scroll lateral --- */
+/* --- Tablas ---  USADAS POR TARIFAS: relleno y letra reducidos en móvil */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -333,7 +265,7 @@ td {
   padding: var(--espacio-xs);
   border: 1px solid var(--gris-asfalto);
   text-align: left;
-  overflow-wrap: anywhere;   /* seguro: si una palabra no cabe, se parte en vez de desbordar */
+  overflow-wrap: anywhere;
 }
 
 th {
@@ -346,7 +278,7 @@ caption {
   font-weight: 700;
 }
 
-/* --- Enlace fijo de WhatsApp --- */
+/* --- Enlace fijo de WhatsApp (todas las páginas) --- */
 .whatsapp-fijo {
   position: fixed;
   bottom: var(--espacio-m);
@@ -383,7 +315,7 @@ caption {
 }
 
 
-/* ========== 5. PIE DE PÁGINA (móvil) ========== */
+/* ========== 6. PIE DE PÁGINA (móvil) ========== */
 /* Móvil: los tres bloques apilados en una columna */
 footer {
   display: flex;
@@ -394,6 +326,11 @@ footer {
   border-top: 2px solid var(--gris-asfalto);
 }
 
+/* Reboot de Bootstrap agranda los h2 (fluido hasta 2rem): en el pie se acota */
+footer h2 {
+  font-size: 1.25rem;
+}
+
 .pie-bloque ul {
   list-style: none;
   margin: 0;
@@ -401,8 +338,7 @@ footer {
 }
 
 
-/* ========== 6. FORMULARIO (móvil) ========== */
-/* Contenedor de reservas: una columna en móvil */
+/* ========== 7. FORMULARIO Y RESERVAS (USADO POR RESERVAS) ========== */
 .reservas-layout {
   display: grid;
   grid-template-columns: 1fr;
@@ -443,7 +379,6 @@ form textarea {
   margin-bottom: var(--espacio-m);
 }
 
-/* Radio y checkbox: etiqueta al lado, sin ancho completo */
 form input[type="radio"],
 form input[type="checkbox"] {
   display: inline-block;
@@ -458,7 +393,6 @@ form input[type="checkbox"] + label {
   margin-right: var(--espacio-m);
 }
 
-/* Dos campos cortos en la misma fila (bajan solos si no caben) */
 .fila-campos {
   display: flex;
   flex-wrap: wrap;
@@ -484,7 +418,7 @@ textarea:focus {
 }
 
 
-/* ========== 7. TABLET (min-width: 768px) ========== */
+/* ========== 8. TABLET (min-width: 768px) ========== */
 @media (min-width: 768px) {
   body {
     padding: var(--espacio-m) var(--espacio-m) 5rem;
@@ -506,24 +440,12 @@ textarea:focus {
     justify-content: flex-end;
   }
 
-  /* Portada en dos columnas */
-  .portada {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--espacio-l);
-    padding: var(--espacio-l);
-  }
-
-  /* Galería de rutas: tres en fila */
-  .galeria {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  /* Reservas: formulario y contacto en proporción 2:1 */
+  /* USADA POR RESERVAS: formulario y contacto en proporción 2:1 */
   .reservas-layout {
     grid-template-columns: 2fr 1fr;
   }
 
-  /* Tablas: letra y relleno normales */
+  /* USADA POR TARIFAS: letra y relleno normales */
   table {
     font-size: 1rem;
   }
@@ -547,19 +469,14 @@ textarea:focus {
 }
 
 
-/* ========== 8. ESCRITORIO (min-width: 1200px) ========== */
+/* ========== 9. ESCRITORIO (min-width: 1200px) ========== */
 @media (min-width: 1200px) {
-  /* Contenido más ancho: la flota pasa a 4 columnas */
+  /* USADA POR TARIFAS/RESERVAS */
   main {
     max-width: 75rem;
   }
 
   h1 {
     font-size: 2.25rem;
-  }
-
-  /* Portada: más espacio para el texto */
-  .portada {
-    grid-template-columns: 3fr 2fr;
   }
 }

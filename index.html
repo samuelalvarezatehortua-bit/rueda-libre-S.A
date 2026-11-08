@@ -1,203 +1,280 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rueda libre</title>
-    <link rel="stylesheet" href="estilos/estilos.css">
-   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rueda Libre | Alquiler de bicicletas en Medellín</title>
+
+  <!-- Fuentes de marca -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- 1. Bootstrap primero -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+  <!-- 2. Hoja propia después: gana en la cascada sin !important -->
+  <link rel="stylesheet" href="estilos/estilos.css">
 </head>
-<body>
-    <header>
-        <a href="../index.html" class="marca">
-            <img src="../img/Pasted image.png" alt="Logotipo" width="80" height="80">
-            <span class="nombre-negocio">Rueda Libre</span>
-        </a>
-        <nav>
-            <ul id="menu">
-                <li><a href="../index.html" class="activo" aria-current="page">Inicio</a></li>
-                <li><a href="../paginas/tarifas.html">Ver tarifas</a></li>
-                <li><a href="../paginas/reservas.html">Reservar ahora</a></li>
-                <li><a href="/paginas/catalogo-bootstrap.html">Catalago Bootstrap</a></li>
-                <li><a href="#Encuentranos">Donde nos encuentras?</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section class="portada">
-            <div class="portada-texto">
-                <h1>Rueda Libre | Alquiler de bicicletas en Medellín</h1>
-                <p>Bienvenidos a Rueda libre, en este sitio encontraras diferentes formas para alquilar una bicicleta ya sea para montar de manera libre o guida, tambien esta la opción de que puedas alquilar diferentes tipos de bicicletas.</p>
+
+<!-- px-0: quita el relleno lateral del body propio, porque .container ya lo aporta -->
+<body class="px-0">
+
+  <header>
+    <a href="index.html" class="marca">
+      <img src="img/Pasted image.png" alt="Logotipo" width="80" height="80">
+      <span class="nombre-negocio">Rueda Libre</span>
+    </a>
+
+    <nav>
+      <ul id="menu">
+        <li><a href="index.html" class="activo" aria-current="page">Inicio</a></li>
+        <li><a href="paginas/tarifas.html">Ver tarifas</a></li>
+        <li><a href="paginas/reservas.html">Reservar ahora</a></li>
+        <li><a href="paginas/catalogo-bootstrap.html">Catalago Bootstrap</a></li>
+        <li><a href="#Encuentranos">Donde nos encuentras?</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- PORTADA -->
+    <section class="row align-items-center g-4 py-4">
+      <div class="col-12 col-md-6 col-xl-7">
+        <h1>Rueda Libre | Alquiler de bicicletas en Medellín</h1>
+        <p>Bienvenidos a Rueda Libre. Aquí encontrarás diferentes formas de alquilar una bicicleta, ya sea para montar de manera libre o guiada. También puedes elegir entre bicicletas de ciudad, montaña, ruta o eléctricas.</p>
+        <p class="mb-0"><strong>Somos una empresa de alquiler y tours</strong> en bicicleta dentro de la ciudad de Medellín, especializada en bicicletas MTB (Mountain Bike).</p>
+      </div>
+      <div class="col-12 col-md-6 col-xl-5">
+        <img src="img/ciclistas" class="img-fluid rounded-3" alt="Ciclistas recorriendo una ciclorruta de Medellín" width="600" height="450">
+      </div>
+    </section>
+
+    <!-- FLOTA -->
+    <section class="py-4">
+      <h2 class="mb-4">Nuestra flota</h2>
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
+
+        <div class="col">
+          <article class="card h-100 bg-white">
+            <img src="img/Pasted image (6).png" class="card-img-top" alt="Bicicleta Urbana Clásica" width="400" height="300">
+            <div class="card-body d-flex flex-column">
+              <h3 class="fs-5 fw-bold">Ciudad</h3>
+              <p class="flex-grow-1">Cómoda y liviana para las ciclorrutas.</p>
+              <p class="fw-bold mb-3">$10.000 <span class="fw-normal">por hora</span></p>
+              <a href="paginas/reservas.html" class="boton-cta align-self-start" aria-label="Reservar Urbana Clásica">Reservar</a>
             </div>
-            <img src="img/Pasted image.png" alt="logotipo" width="600" height="450">
-        </section> 
-    <article>
-            <h2>Nuestros servicios</h2>
-    <ul>
-        <li>
-            <h3>¿Quienes somos?</h3>
-            <ul>
-                <li>
-                    <strong>Somos una empresa de alquiler y tours</strong> en bicicleta dentro de la ciudad de Medellin que se especializa en bicicletas MTB(Mountain Bike)
-                </li>
-            </ul>
-        </li>
-    </ul>
-    </article>
-    <article class="tarjeta">
-        <h2>Nuestros servicios</h2>
-        <a href="https://www.feriadeflores.com/guias/recorrido-bicicleta-feria-de-flores/" target="_blank"><img src="img/Pasted image (2).png" alt="ruta" width="100" height="50"></a>
-        <img src="img/Pasted image (3).png" alt="bici" width="100" height="100">
-        <img src="img/Pasted image (4).png" alt="casco" width="100" height="100">
-    <ul>
-        <li>
-            <strong>Nosotros ofrecemos diferentes servicios como:</strong> alquiler de bicicletas de ciudad, mtb o de ruta ademas de que tambien alquilamos manuales o electricas, tambien ofrecemos el alquiler o compra de el casco y el candado, y encima de esto ofrecemos rutas guiadas
-        </li>
-    </ul>
-    </article>
-    <article class="tarjeta tarjeta-nuevo">
-  <span class="etiqueta-nuevo">Nuevo</span>
-  <h3>Bicicletas eléctricas</h3>
-  <img src="img/Pasted image (5).png" alt="Bicicleta eléctrica">
-  <p>Alquila una bicicleta eléctrica por hora, medio día o día completo.</p>
-</article>
-<section class="flota">
-  <h2>Nuestra flota</h2>
+          </article>
+        </div>
 
-  <div class="cuadricula">
+        <div class="col">
+          <article class="card h-100 bg-white">
+            <img src="img/Pasted image (7).png" class="card-img-top" alt="Bicicleta Ciudad Plegable" width="400" height="300">
+            <div class="card-body d-flex flex-column">
+              <h3 class="fs-5 fw-bold">Ciudad Plegable</h3>
+              <p class="flex-grow-1">Se dobla en segundos; ideal para combinar con el metro.</p>
+              <p class="fw-bold mb-3">$12.000 <span class="fw-normal">por hora</span></p>
+              <a href="paginas/reservas.html" class="boton-cta align-self-start" aria-label="Reservar Urbana Plegable">Reservar</a>
+            </div>
+          </article>
+        </div>
 
-    <article class="tarjeta tarjeta-modelo">
-      <img src="img/Pasted image (9).png" alt="Bicicleta Infantil" width="400" height="300">
-      <h3>Infantil</h3>
-      <p class="descripcion">Para niños de 6 a 10 años.</p>
-      <p class="precio">$8.000 <span>por hora</span></p>
-      <a href="paginas/reservas.html" class="boton-cta" aria-label="Reservar Infantil">Reservar</a>
-    </article>
-    
-    <article class="tarjeta tarjeta-modelo">
-      <img src="img/Pasted image (6).png" alt="Bicicleta Ciudad" width="400" height="300">
-      <h3>Ciudad</h3>
-      <p class="descripcion">Cómoda y liviana para las ciclorrutas.</p>
-      <p class="precio">$10.000 <span>por hora</span></p>
-      <a href="paginas/reservas.html" class="boton-cta" aria-label="Reservar Urbana Clásica">Reservar</a>
-    </article>
+        <div class="col">
+          <article class="card h-100 bg-white">
+            <img src="img/Pasted image (3).png" class="card-img-top" alt="Bicicleta Montaña" width="400" height="300">
+            <div class="card-body d-flex flex-column">
+              <h3 class="fs-5 fw-bold">Montaña Trail</h3>
+              <p class="flex-grow-1">Suspensión delantera y 21 cambios para las subidas.</p>
+              <p class="fw-bold mb-3">$15.000 <span class="fw-normal">por hora</span></p>
+              <a href="paginas/reservas.html" class="boton-cta align-self-start" aria-label="Reservar Montaña Trail">Reservar</a>
+            </div>
+          </article>
+        </div>
 
-    <article class="tarjeta tarjeta-modelo">
-      <img src="img/Pasted image (7).png" alt="Bicicleta Ciudad Plegable" width="400" height="300">
-      <h3>Ciudad Plegable</h3>
-      <p class="descripcion">Se dobla en segundos; ideal para combinar con el metro.</p>
-      <p class="precio">$12.000 <span>por hora</span></p>
-      <a href="paginas/reservas.html" class="boton-cta" aria-label="Reservar Urbana Plegable">Reservar</a>
-    </article>
+        <div class="col">
+          <article class="card h-100 bg-white">
+            <img src="img/Pasted image (8).png" class="card-img-top" alt="Bicicleta Ruta" width="400" height="300">
+            <div class="card-body d-flex flex-column">
+              <h3 class="fs-5 fw-bold">Ruta</h3>
+              <p class="flex-grow-1">Para rutas mixtas de asfalto.</p>
+              <p class="fw-bold mb-3">$18.000 <span class="fw-normal">por hora</span></p>
+              <a href="paginas/reservas.html" class="boton-cta align-self-start" aria-label="Reservar Gravel Aventura">Reservar</a>
+            </div>
+          </article>
+        </div>
 
-    <article class="tarjeta tarjeta-modelo">
-      <img src="img/Pasted image (3).png" alt="Bicicleta Montaña" width="400" height="300">
-      <h3>Montaña Trail</h3>
-      <p class="descripcion">Suspensión delantera y 21 cambios para las subidas.</p>
-      <p class="precio">$15.000 <span>por hora</span></p>
-      <a href="paginas/reservas.html" class="boton-cta" aria-label="Reservar Montaña Trail">Reservar</a>
-    </article>
+        <div class="col">
+          <article class="card h-100 bg-white position-relative">
+            <span class="badge text-bg-warning position-absolute top-0 end-0 m-2">Nuevo</span>
+            <img src="img/Pasted image (5).png" class="card-img-top" alt="Bicicleta Eléctrica Urbana" width="400" height="300">
+            <div class="card-body d-flex flex-column">
+              <h3 class="fs-5 fw-bold">Eléctrica Urbana</h3>
+              <p class="flex-grow-1">Asistencia eléctrica con 45 km de autonomía.</p>
+              <p class="fw-bold mb-3">$25.000 <span class="fw-normal">por hora</span></p>
+              <a href="paginas/reservas.html" class="boton-cta align-self-start" aria-label="Reservar Eléctrica Urbana">Reservar</a>
+            </div>
+          </article>
+        </div>
 
-    <article class="tarjeta tarjeta-modelo">
-      <img src="img/Pasted image (8).png" alt="Bicicleta Ruta" width="400" height="300">
-      <h3>Ruta</h3>
-      <p class="descripcion">Para rutas de asfalto.</p>
-      <p class="precio">$18.000 <span>por hora</span></p>
-      <a href="paginas/reservas.html" class="boton-cta" aria-label="Reservar Gravel Aventura">Reservar</a>
-    </article>
+        <div class="col">
+          <article class="card h-100 bg-white">
+            <img src="img/Pasted image (9).png" class="card-img-top" alt="Bicicleta Infantil" width="400" height="300">
+            <div class="card-body d-flex flex-column">
+              <h3 class="fs-5 fw-bold">Infantil</h3>
+              <p class="flex-grow-1">Para niños de 6 a 10 años.</p>
+              <p class="fw-bold mb-3">$8.000 <span class="fw-normal">por hora</span></p>
+              <a href="paginas/reservas.html" class="boton-cta align-self-start" aria-label="Reservar Infantil">Reservar</a>
+            </div>
+          </article>
+        </div>
 
-    <article class="tarjeta tarjeta-modelo">
-        <img src="img/Pasted image (10).png" alt="Bicicleta Tándem" width="400" height="300">
-        <h3>Tándem</h3>
-        <p class="descripcion">Para dos personas; perfecta para pasear en pareja.</p>
-        <p class="precio">$20.000 <span>por hora</span></p>
-        <a href="paginas/reservas.html" class="boton-cta" aria-label="Reservar Tándem">Reservar</a>
-    </article>
+        <div class="col">
+          <article class="card h-100 bg-white">
+            <img src="img/Pasted image (10).png" class="card-img-top" alt="Bicicleta Tándem" width="400" height="300">
+            <div class="card-body d-flex flex-column">
+              <h3 class="fs-5 fw-bold">Tándem</h3>
+              <p class="flex-grow-1">Para dos personas; perfecta para pasear en pareja.</p>
+              <p class="fw-bold mb-3">$20.000 <span class="fw-normal">por hora</span></p>
+              <a href="paginas/reservas.html" class="boton-cta align-self-start" aria-label="Reservar Tándem">Reservar</a>
+            </div>
+          </article>
+        </div>
 
-    <article class="tarjeta tarjeta-modelo tarjeta-nuevo">
-      <span class="etiqueta-nuevo">Nuevo</span>
-      <img src="img/Pasted image (5).png" alt="Bicicleta Eléctrica Urbana" width="400" height="300">
-      <h3>Eléctrica Urbana</h3>
-      <p class="descripcion">Asistencia eléctrica con 45 km de autonomía.</p>
-      <p class="precio">$25.000 <span>por hora</span></p>
-      <a href="paginas/reservas.html" class="boton-cta" aria-label="Reservar Eléctrica Urbana">Reservar</a>
-    </article>
+      </div>
+    </section>
 
-  </div>
-</section>
-<section class="rutas">
-  <h2>Nuestras rutas</h2>
+    <!-- RUTAS -->
+    <section class="py-4">
+      <h2 class="mb-4">Nuestras rutas</h2>
 
-  <div class="galeria">
-    <article class="tarjeta">
-      <img src="img/Pasted image (2).png" alt="Ruta Río y Parques" width="400" height="300">
-      <h3>Río y Parques</h3>
-      <p>Nivel: Fácil</p>
-    </article>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <article class="card h-100 bg-white">
+            <img src="img/Pasted image (2).png" class="card-img-top" alt="Ruta Río y Parques" width="400" height="300">
+            <div class="card-body">
+              <h3 class="fs-5 fw-bold">Río y Parques</h3>
+              <p class="mb-0">Nivel: Fácil</p>
+            </div>
+          </article>
+        </div>
 
-    <article class="tarjeta">
-      <img src="img/sabores de barrio" alt="Ruta Sabores de Barrio" width="400" height="300">
-      <h3>Sabores de Barrio</h3>
-      <p>Nivel: Medio</p>
-    </article>
+        <div class="col">
+          <article class="card h-100 bg-white">
+            <img src="img/sabores de barrio" class="card-img-top" alt="Ruta Sabores de Barrio" width="400" height="300">
+            <div class="card-body">
+              <h3 class="fs-5 fw-bold">Sabores de Barrio</h3>
+              <p class="mb-0">Nivel: Medio</p>
+            </div>
+          </article>
+        </div>
 
-    <article class="tarjeta">
-      <img src="img/palmas" alt="Ruta Reto Las Palmas" width="400" height="300">
-      <h3>Reto Las Palmas</h3>
-      <p>Nivel: Difícil</p>
-    </article>
-  </div>
-</section>
-    <article>
-        <h2>¿Como alquilar?</h2>
-    <ul>
-        <li>
-            <strong>El alquiler:</strong>
-            <ol>
-                <li>Nos contactas de manera virtual o escribiendonos al correo</li>
-                <li>Nos expresas que servicio deseas alquilar si es solo la bicicleta con ruta o solo la ruta</li>
-                <li>Procedes a expresar la fecha en la que deseas realizar el alquiler</li>
-                <li>Nos notificas desde que hora deseas comenzar el alquiler</li>
-                <li>Te enviamos un correo de confirmación con los detalles del alquiler</li>
-            </ol>
-        </li>
-    </ul>
-    </article>
-    <article>
-        <h2>Beneficios</h2>
-            <ul>
-                <li>Precios mas accesibles y con los objetos de la mayor calidad</li>
-                <li>Guias profesionales</li>
-            <li>Combinamos el turismo con la actividad fisica al aire libre</li>
-    </ul>
-        </li>
-    </article>
-    <a href="https://wa.me/573000000000" class="whatsapp-fijo" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-    </main>
-    <footer>
-  <section class="pie-bloque">
-    <h2 id="Encuentranos">Rueda Libre</h2>
-    <p>Alquiler de bicicletas y tours en Medellín.</p>
-    <p><strong>Nos puedes encontrar en:</strong> cl 104 #99-99</p>
-  </section>
+        <div class="col">
+          <article class="card h-100 bg-white">
+            <img src="img/palmas" class="card-img-top" alt="Ruta Reto Las Palmas" width="400" height="300">
+            <div class="card-body">
+              <h3 class="fs-5 fw-bold">Reto Las Palmas</h3>
+              <p class="mb-0">Nivel: Difícil</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  <section class="pie-bloque">
-    <h2>Contáctanos</h2>
-    <ul>
-      <li>Correo: <a href="mailto:MTBMD@gmail.com">MTBMD@gmail.com</a></li>
-      <li>WhatsApp: <a href="tel:+573022020020">+57 302 202 0020</a></li>
-    </ul>
-  </section>
+    <!-- CÓMO ALQUILAR -->
+    <section class="py-4">
+      <h2 class="mb-3">¿Cómo alquilar?</h2>
+      <ol>
+        <li>Nos contactas de manera virtual o escribiéndonos al correo.</li>
+        <li>Nos dices qué servicio deseas: solo la bicicleta, solo la ruta o ambos.</li>
+        <li>Nos indicas la fecha en la que deseas realizar el alquiler.</li>
+        <li>Nos notificas desde qué hora deseas comenzar.</li>
+        <li>Te enviamos un correo de confirmación con los detalles del alquiler.</li>
+      </ol>
+    </section>
 
-  <section class="pie-bloque">
-    <h2>Horario de atención</h2>
-    <dl>
-      <dt>Lunes a viernes:</dt>
-      <dd>7:00 AM - 7:00 PM</dd>
-      <dt>Sábados, domingos y festivos:</dt>
-      <dd>6:00 AM - 2:00 PM</dd>
-    </dl>
-  </section>
-</footer>
+    <!-- BENEFICIOS -->
+    <section class="py-4">
+      <h2 class="text-center mb-5">¿Por qué Rueda Libre?</h2>
+
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        <div class="col">
+          <div class="border rounded-3 p-4 h-100 text-center bg-white">
+            <p class="fs-4 fw-bold text-success mb-2">100% revisadas</p>
+            <h3 class="fs-5 fw-bold text-primary-emphasis">Bicicletas revisadas</h3>
+            <p class="text-body-secondary mb-0">Revisamos cada bicicleta antes de cada alquiler.</p>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="border rounded-3 p-4 h-100 text-center bg-white">
+            <p class="fs-4 fw-bold text-success mb-2">Incluidos</p>
+            <h3 class="fs-5 fw-bold text-primary-emphasis">Casco y candado</h3>
+            <p class="text-body-secondary mb-0">Van incluidos en el precio del alquiler.</p>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="border rounded-3 p-4 h-100 text-center bg-white">
+            <p class="fs-4 fw-bold text-success mb-2">Certificados</p>
+            <h3 class="fs-5 fw-bold text-primary-emphasis">Guías certificados</h3>
+            <p class="text-body-secondary mb-0">Recorridos acompañados por guías con certificación.</p>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="border rounded-3 p-4 h-100 text-center bg-white">
+            <p class="fs-4 fw-bold text-success mb-2">3 sedes</p>
+            <h3 class="fs-5 fw-bold text-primary-emphasis">Puntos de devolución</h3>
+            <p class="text-body-secondary mb-0">Devuelve la bicicleta en la sede que te quede mejor.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRANJA FINAL -->
+    <section class="text-bg-success rounded-4 p-4 p-md-5 my-4">
+      <div class="d-flex flex-column flex-md-row align-items-center justify-content-md-between gap-3 gap-md-4">
+        <span class="d-none d-md-block display-1" aria-hidden="true">🚴</span>
+
+        <div class="text-center text-md-start">
+          <h2 class="fw-bold mb-1 text-white">¿Listo para rodar?</h2>
+          <p class="lead mb-0">Reserva tu bicicleta en pocos minutos.</p>
+        </div>
+
+        <a href="paginas/reservas.html" class="text-bg-warning fw-bold fs-5 px-4 py-3 rounded-pill shadow text-decoration-none">Reservar ahora</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <section class="pie-bloque">
+      <h2 id="Encuentranos">Rueda Libre</h2>
+      <p>Alquiler de bicicletas y tours en Medellín.</p>
+      <p><strong>Nos puedes encontrar en:</strong> cl 104 #99-99</p>
+    </section>
+
+    <section class="pie-bloque">
+      <h2>Contáctanos</h2>
+      <ul>
+        <li>Correo: <a href="mailto:MTBMD@gmail.com">MTBMD@gmail.com</a></li>
+        <li>WhatsApp: <a href="tel:+573022020020">+57 302 202 0020</a></li>
+      </ul>
+    </section>
+
+    <section class="pie-bloque">
+      <h2>Horario de atención</h2>
+      <dl>
+        <dt>Lunes a viernes:</dt>
+        <dd>7:00 AM - 7:00 PM</dd>
+        <dt>Sábados, domingos y festivos:</dt>
+        <dd>6:00 AM - 2:00 PM</dd>
+      </dl>
+    </section>
+  </footer>
+
+  <a href="https://wa.me/573000000000" class="whatsapp-fijo" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
