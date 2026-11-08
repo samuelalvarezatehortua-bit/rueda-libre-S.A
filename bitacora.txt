@@ -182,3 +182,44 @@ Separación uniforme/	gap: var(--espacio-l)/	Mismo espacio entre filas y columna
 Tarjeta en columna/	display: flex; flex-direction: column/	Contenido apilado dentro de la tarjeta
 Enlace al final/	.descripcion { flex-grow: 1 } y margin-top: auto/	“Reservar” alineado aunque las descripciones midan distinto
 Sin margen duplicado/	margin-bottom: 0 en .tarjeta-modelo/	El gap ya separa las tarjetas
+
+Criterio de elección
+Flexbox: el contenido decide el tamaño y los elementos se acomodan en una dimensión (una fila o una columna).
+Grid: el contenedor define las filas y columnas (dos dimensiones) y los elementos se ubican en esa estructura.
+Decisiones
+Caso	Técnica	Por qué
+Portada/	Grid (1fr 1fr, align-items: center)/	La estructura de dos columnas la define el layout, no el contenido. Con fr reparto el espacio en partes iguales y align-items centra el texto verticalmente frente a la foto.
+Galería de rutas/	Grid (repeat(3, 1fr))/	Quiero tres columnas exactas e iguales sin importar lo que mida cada tarjeta. Aquí el contenedor manda.
+Reservas/ (formulario y contacto)	Grid (2fr 1fr)/	La proporción 2:1 es una decisión del layout. Con fr se cumple sin porcentajes ni px.
+Fila documento y celular/	Flexbox (flex: 1 1 12rem, flex-wrap)/	Son solo dos elementos en una fila. Con wrap, bajan solos si no caben. Es una dimensión.
+Encabezado/	Flexbox (space-between, align-items: center)/	Una fila con dos elementos: marca en un extremo y menú en el otro.
+Pie/	Flexbox (flex: 1 1 14rem, flex-wrap)/	Tres bloques en una fila que bajan según el ancho. Una dimensión.
+
+Enfoque
+
+Los estilos sin media query describen el móvil en una sola columna. Desde 768 px y 1200 px se agregan solo los cambios que el contenido necesita, con @media (min-width: ...).
+
+Comportamiento por ancho
+Ancho	Encabezado	Pie	Flota 
+360 px	Nombre arriba, menú centrado debajo	Tres bloques apilados	
+768 px	Nombre a la izquierda, menú a la derecha	Tres bloques en fila
+1280 px	Igual que tablet	Igual que tablet	
+Decisiones Flexbox y Grid
+Caso	Técnica	Por qué
+Portada	Grid	Estructura de columnas definida por el layout
+Galería de rutas	Grid	Tres columnas iguales, controladas por el contenedor
+Reservas	Grid	Proporción 2:1 con fr
+Fila documento y celular	Flexbox	Dos elementos en una dimensión, bajan solos
+Encabezado	Flexbox	Una fila (o columna en móvil) con dos elementos
+Pie	Flexbox	Tres bloques en una dimensión
+Problemas responsive encontrados y solución
+
+Anota los que viste tú. Estos son los que es probable que aparezcan, con su causa:
+
+#	Problema	Causa	Solución
+1	Las tablas de tarifas se desbordaban a 360 px y obligaban a desplazarse de lado	Relleno y letra de escritorio en una tabla de cinco columnas	Relleno --espacio-xs, letra de 0.8125rem y overflow-wrap: anywhere en móvil; valores normales desde 768 px
+2	El menú se amontonaba y quedaba pegado al nombre	El encabezado seguía en fila en pantallas angostas	flex-direction: column y menú centrado en móvil; fila con space-between desde tablet
+3	Las columnas de portada, galería y reservas quedaban demasiado angostas	Columnas definidas para escritorio sin condición	Una columna en base; 1fr 1fr, repeat(3, 1fr) y 2fr 1fr solo desde 768 px
+4	Los bloques del pie quedaban estirados en móvil	flex: 1 1 14rem se aplicaba a la altura al estar en columna	La regla flex pasó a la media query de tablet, cuando el pie es una fila
+5	Imágenes más anchas que su contenedor	Atributos width fijos sin regla fluida	img { max-width: 100%; height: auto } global
+
