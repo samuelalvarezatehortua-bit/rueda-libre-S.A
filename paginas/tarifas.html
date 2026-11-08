@@ -1,164 +1,134 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarifas</title>
-    <link rel="stylesheet" href="../estilos/estilos.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tarifas | Rueda Libre</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="../estilos/estilos.css">
 </head>
-<body>
-    <header>
-        <a href="../index.html" class="marca">
-            <img src="../img/Pasted image.png" alt="Logotipo" width="80" height="80">
-            <span class="nombre-negocio">Rueda Libre</span>
-        </a>
-        <nav>
-            <ul id="menu">
-                <li><a href="../index.html">Inicio</a></li>
-                <li><a href="../paginas/tarifas.html" class="activo" aria-current="page">Ver tarifas</a></li>
-                <li><a href="../paginas/reservas.html">Reservar ahora</a></li>
-                <li><a href="../paginas/catalogo-bootstrap.html">Catalago Bootstrap</a></li>
-                <li><a href="#Encuentranos">Donde nos encuentras?</a></li>
-            </ul>
-        </nav>   
-    </header>
-    <main>
-        <section>
-            <h1>Tarifas</h1>
-        <p>Aca encontraras nuestras tarifas para todos los servicios que ofrecemos.</p>
-        <table border="1">
-        <caption>Tarifas de bicicletas</caption>
-        <thead>
-            <tr>
+<body class="px-0 pb-5">
+  <header class="container d-flex flex-column flex-md-row align-items-center justify-content-md-between flex-wrap gap-3 py-3 text-center text-md-start">
+    <a href="../index.html" class="marca d-flex align-items-center gap-2">
+      <img src="../img/Pasted image.png" alt="Logotipo de Rueda Libre" width="80" height="80">
+      <span class="nombre-negocio">Rueda Libre</span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <ul id="menu" class="nav justify-content-center justify-content-md-end gap-1">
+        <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link activo" href="../paginas/tarifas.html" aria-current="page">Ver tarifas</a></li>
+        <li class="nav-item"><a class="nav-link" href="../paginas/reservas.html">Reservar ahora</a></li>
+        <li class="nav-item"><a class="nav-link" href="../paginas/catalogo-bootstrap.html">Catálogo de la flota</a></li>
+        <li class="nav-item"><a class="nav-link" href="#Encuentranos">Dónde nos encuentras</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container py-3 py-lg-4">
+    <div class="mb-4">
+      <h1 class="mb-2">Tarifas</h1>
+      <p class="lead mb-0">Aquí encontrarás las tarifas de alquiler y los precios de nuestros recorridos.</p>
+    </div>
+
+    <div class="row g-4 align-items-start">
+      <section class="col-12 col-lg-8" aria-labelledby="titulo-tarifas-bicicletas">
+        <h2 id="titulo-tarifas-bicicletas" class="h4 mb-3">Alquiler de bicicletas</h2>
+        <div class="table-responsive mb-4">
+          <table class="tabla-bicicletas mb-0">
+            <caption>Tarifas de bicicletas</caption>
+            <thead>
+              <tr>
                 <th scope="col">Tipo de bicicleta</th>
-                <th>1 hora</th>
-                <th>Medio dia(4 horas)</th>
-                <th>Dia completo</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Infantil</td>
-                <td>8.000$</td>
-                <td>15.000$</td>
-                <td>30.000$</td>
-            </tr>
-            <tr>
-                <td>Ciudad</td>
-                <td>10.000$</td>
-                <td>30.000$</td>
-                <td>50.000$</td>
-            </tr>
-            <tr>
-                <td>Ciudad Pegable</td>
-                <td>12.000$</td>
-                <td>35.000$</td>
-                <td>60.000$</td>
-            </tr>
-            <tr>
-                <td>Mountain</td>
-                <td>15.000$</td>
-                <td>45.000$</td>
-                <td>70.000$</td>
-            </tr>
-            <tr>
-                <td>Ruta</td>
-                <td>18.000$</td>
-                <td>50.000$</td>
-                <td>85.000$</td>
-            </tr>
-            <tr>
-                <td>Tandem</td>
-                <td>20.000$</td>
-                <td>60.000$</td>
-                <td>100.000$</td>
-            </tr>
-            <tr>
-                <td>Electrica</td>
-                <td>25.000$</td>
-                <td>70.000$</td>
-                <td>110.000$</td>
-            </tr>            
-        </tbody>
-    </table>
-    <p>Los servicios como el casco y candado están incluidos en el precio de alquiler.</p>
-    <table border="1">
-        <caption>Tarifas rutas</caption>
-        <thead>
-            <tr>
+                <th scope="col">1 hora</th>
+                <th scope="col">Medio día (4 horas)</th>
+                <th scope="col">Día completo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Infantil</td><td>$8.000</td><td>$15.000</td><td>$30.000</td></tr>
+              <tr><td>Ciudad</td><td>$10.000</td><td>$30.000</td><td>$50.000</td></tr>
+              <tr><td>Ciudad plegable</td><td>$12.000</td><td>$35.000</td><td>$60.000</td></tr>
+              <tr><td>Montaña</td><td>$15.000</td><td>$45.000</td><td>$70.000</td></tr>
+              <tr><td>Ruta</td><td>$18.000</td><td>$50.000</td><td>$85.000</td></tr>
+              <tr><td>Tándem</td><td>$20.000</td><td>$60.000</td><td>$100.000</td></tr>
+              <tr><td>Eléctrica</td><td>$25.000</td><td>$70.000</td><td>$110.000</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>El casco y el candado están incluidos en el precio del alquiler.</p>
+
+        <h2 class="h4 mb-3">Tarifas de recorridos guiados</h2>
+        <div class="table-responsive">
+          <table class="tabla-rutas mb-0">
+            <caption>Tarifas de rutas</caption>
+            <thead>
+              <tr>
                 <th scope="col">Recorrido</th>
-                <th>Distancia</th>
-                <th>Duracion</th>
-                <th>Nivel</th>
-                <th>Precio por pesona</th>
-            </tr>
-        </thead>
-        <tbody>
-             <tr>
-                <td>Rio y Parques</td>
-                <td>12km</td>
-                <td>2h</td>
-                <td>Facil</td>
-                <td>45.000$</td>
-            </tr>
-            <tr>
-                <td>Sabores de Barrio</td>
-                <td>18km</td>
-                <td>3h</td>
-                <td>Medio</td>
-                <td>60.000$</td>
-            </tr>
-            <tr>
-                <td>Reto las palmas</td>
-                <td>25km</td>
-                <td>4h</td>
-                <td>Difícil</td>
-                <td>85.000$</td>
-            </tr>
-        </tbody>
-    </table>
-        </section>
-        
-    <aside>
-        <h2>Horarios de salida</h2>
-    <p>Los recorridos salen sabados y domingos a las 7:00 AM.</p>
-    <h3>Que llevar: </h3>
-    <ul>
-        <li>Ropa comoda y deportiva</li>
-        <li>Zapatos deportivos</li>
-        <li>Protector solar</li>
-        <li>Botella de agua</li> 
-    </ul>
-    </aside>
-    </main>
-   <a href="https://wa.me/573000000000" class="whatsapp-fijo" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-    <footer>
-  <section class="pie-bloque">
-    <h2 id="Encuentranos">Rueda Libre</h2>
-    <p>Alquiler de bicicletas y tours en Medellín.</p>
-    <p><strong>Nos puedes encontrar en:</strong> cl 104 #99-99</p>
-  </section>
+                <th scope="col">Distancia</th>
+                <th scope="col">Duración</th>
+                <th scope="col">Nivel</th>
+                <th scope="col">Precio por persona</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Río y Parques</td><td>12 km</td><td>2 h</td><td>Fácil</td><td>$45.000</td></tr>
+              <tr><td>Sabores de Barrio</td><td>18 km</td><td>3 h</td><td>Medio</td><td>$60.000</td></tr>
+              <tr><td>Reto Las Palmas</td><td>25 km</td><td>4 h</td><td>Difícil</td><td>$85.000</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-  <section class="pie-bloque">
-    <h2>Contáctanos</h2>
-    <ul>
-      <li>Correo: <a href="mailto:MTBMD@gmail.com">MTBMD@gmail.com</a></li>
-      <li>WhatsApp: <a href="tel:+573022020020">+57 302 202 0020</a></li>
-    </ul>
-  </section>
+      <aside class="col-12 col-lg-4" aria-labelledby="horarios-salida">
+        <article class="tarjeta">
+          <h2 id="horarios-salida" class="h4">Horarios de salida</h2>
+          <p>Los recorridos salen sábados y domingos a las 7:00 a. m.</p>
+          <h3 class="h5">Qué llevar</h3>
+          <ul class="mb-0">
+            <li>Ropa cómoda y deportiva</li>
+            <li>Zapatos deportivos</li>
+            <li>Protector solar</li>
+            <li>Botella de agua</li>
+          </ul>
+        </article>
+      </aside>
+    </div>
+  </main>
 
-  <section class="pie-bloque">
-    <h2>Horario de atención</h2>
-    <dl>
-      <dt>Lunes a viernes:</dt>
-      <dd>7:00 AM - 7:00 PM</dd>
-      <dt>Sábados, domingos y festivos:</dt>
-      <dd>6:00 AM - 2:00 PM</dd>
-    </dl>
-  </section>
-</footer>
+  <div class="container text-end py-2 d-lg-none">
+  <a href="https://wa.me/573000000000" class="whatsapp-fijo" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+</div>
+<a href="https://wa.me/573000000000" class="whatsapp-fijo d-none d-lg-inline-block position-fixed bottom-0 end-0 m-3 z-3" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+
+  <footer class="container py-4">
+    <div class="row g-4 border-top border-secondary pt-4">
+      <section class="pie-bloque col-12 col-md-4">
+        <h2 id="Encuentranos">Rueda Libre</h2>
+        <p>Alquiler de bicicletas y tours en Medellín.</p>
+        <p><strong>Nos puedes encontrar en:</strong> cl 104 #99-99</p>
+      </section>
+      <section class="pie-bloque col-12 col-md-4">
+        <h2>Contáctanos</h2>
+        <ul class="list-unstyled">
+          <li>Correo: <a href="mailto:MTBMD@gmail.com">MTBMD@gmail.com</a></li>
+          <li>WhatsApp: <a href="tel:+573022020020">+57 302 202 0020</a></li>
+        </ul>
+      </section>
+      <section class="pie-bloque col-12 col-md-4">
+        <h2>Horario de atención</h2>
+        <dl>
+          <dt>Lunes a viernes:</dt>
+          <dd>7:00 a. m. – 7:00 p. m.</dd>
+          <dt>Sábados, domingos y festivos:</dt>
+          <dd>6:00 a. m. – 2:00 p. m.</dd>
+        </dl>
+      </section>
+    </div>
+  </footer>
 </body>
-</html>     
+</html>
+  

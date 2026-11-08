@@ -1,22 +1,4 @@
-/* ==========================================================
-   RUEDA LIBRE v2 - Hoja de estilos propia
-   Se carga DESPUÉS de bootstrap.min.css (index.html).
-   Tarifas y reservas todavía no usan Bootstrap: las reglas
-   marcadas con "USADA POR TARIFAS/RESERVAS" deben quedarse.
-   Secciones:
-     1. Variables
-     2. Puente con Bootstrap
-     3. Base
-     4. Encabezado y navegación
-     5. Componentes
-     6. Pie de página
-     7. Formulario y reservas
-     8. Tablet  (min-width: 768px)
-     9. Escritorio (min-width: 1200px)
-   ========================================================== */
-
-
-/* ========== 1. VARIABLES ========== */
+/* Rueda Libre — identidad visual. La distribución usa grilla y utilidades de Bootstrap. */
 :root {
   /* Paleta de marca */
   --verde-ruta: #1E7A4F;
@@ -25,48 +7,31 @@
   --crema: #FAF6EF;
   --gris-asfalto: #5B6470;
 
-  /* Tipografías */
+  /* Tipografías y espaciado de la marca */
   --fuente-titulos: "Montserrat", Arial, sans-serif;
   --fuente-texto: "Open Sans", Arial, sans-serif;
-
-  /* Escala de espaciado */
   --espacio-xs: 0.25rem;
   --espacio-s: 0.5rem;
   --espacio-m: 1rem;
   --espacio-l: 2rem;
-
-  /* Indicador de foco */
   --indicador-foco: 3px solid var(--azul-noche);
-}
 
-
-/* ========== 2. PUENTE CON BOOTSTRAP ========== */
-/* Bootstrap lee sus colores y fuentes de variables --bs-*.
-   Al redefinirlas aquí (mismo selector, cargada después) la marca
-   se mantiene en utilidades como text-success, text-bg-warning
-   o text-primary-emphasis, sin usar !important. */
-:root {
+  /* Puente de color y tipografía para la cascada de Bootstrap */
   --bs-body-font-family: var(--fuente-texto);
   --bs-body-color: var(--azul-noche);
   --bs-body-color-rgb: 20, 33, 61;
   --bs-body-bg: var(--crema);
   --bs-heading-color: var(--azul-noche);
   --bs-secondary-color: var(--gris-asfalto);
-
+  --bs-link-color: var(--verde-ruta);
+  --bs-link-hover-color: var(--azul-noche);
   --bs-success: var(--verde-ruta);
   --bs-success-rgb: 30, 122, 79;
   --bs-warning: var(--naranja-pedal);
   --bs-warning-rgb: 243, 154, 43;
   --bs-primary-text-emphasis: var(--azul-noche);
-}
-
-
-/* ========== 3. BASE ========== */
-/* USADA POR TARIFAS/RESERVAS: Bootstrap ya trae box-sizing: border-box */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+  --bs-form-check-input-checked-bg-color: var(--verde-ruta);
+  --bs-form-check-input-checked-border-color: var(--verde-ruta);
 }
 
 body {
@@ -74,14 +39,6 @@ body {
   font-weight: 400;
   color: var(--azul-noche);
   background-color: var(--crema);
-  /* arriba y lados | abajo: espacio para que WhatsApp no tape el final */
-  padding: var(--espacio-s) var(--espacio-s) 5rem;
-}
-
-/* Imágenes fluidas: nunca más anchas que su contenedor */
-img {
-  max-width: 100%;
-  height: auto;
 }
 
 h1,
@@ -95,6 +52,10 @@ h3 {
 
 h1 {
   font-size: 1.75rem;
+}
+
+footer h2 {
+  font-size: 1.25rem;
 }
 
 a {
@@ -113,73 +74,18 @@ a:focus {
   outline-offset: 2px;
 }
 
-strong,
-.destacado {
-  font-weight: 600;
-}
-
-/* USADA POR TARIFAS/RESERVAS: en inicio, el <main class="container">
-   de Bootstrap fija el ancho máximo y el relleno lateral */
-main {
-  max-width: 60rem;
-  margin: 0 auto;
-  padding: var(--espacio-s);
-}
-
-main p {
-  max-width: 45rem;
-}
-
-
-/* ========== 4. ENCABEZADO Y NAVEGACIÓN (móvil) ========== */
-/* Móvil: nombre arriba y menú debajo, centrados */
-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--espacio-m);
-  text-align: center;
-}
-
-.marca {
-  display: flex;
-  align-items: center;
-  gap: var(--espacio-s);
-  text-decoration: none;
-}
-
-.nombre-negocio {
-  font-family: var(--fuente-titulos);
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: var(--azul-noche);
-}
-
-#menu {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--espacio-s) var(--espacio-m);
-  margin: 0;
-  padding: 0;
-}
-
 #menu a {
-  display: inline-block;
-  padding: var(--espacio-s) var(--espacio-m);
   color: var(--gris-asfalto);
   text-decoration: none;
   border-bottom: 3px solid transparent;
 }
 
-/* Página actual: (1,1,1) supera a "#menu a" (1,0,1) sin usar !important */
 #menu a.activo {
+  color: var(--verde-ruta);
   font-weight: 600;
   border-bottom-color: var(--verde-ruta);
 }
 
-/* Va después de .activo para que el hover/foco se vea también en el enlace activo */
 #menu a:hover,
 #menu a:focus {
   background-color: var(--gris-asfalto);
@@ -192,10 +98,22 @@ header {
   outline-offset: 2px;
 }
 
+.marca {
+  text-decoration: none;
+}
 
-/* ========== 5. COMPONENTES ========== */
+.nombre-negocio {
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--azul-noche);
+}
 
-/* --- Botón de llamada a la acción (inicio, flota y reservas) --- */
+strong,
+.destacado {
+  font-weight: 600;
+}
+
 .boton-cta {
   display: inline-block;
   padding: var(--espacio-s) var(--espacio-l);
@@ -203,6 +121,7 @@ header {
   color: var(--crema);
   font-weight: 600;
   text-decoration: none;
+  border: 0;
   border-radius: 0.5rem;
 }
 
@@ -217,46 +136,16 @@ header {
   outline-offset: 3px;
 }
 
-/* --- Botón de formulario --- */
-button {
-  font-family: inherit;
-  background-color: var(--naranja-pedal);
-  color: var(--azul-noche);
-  border: none;
-  padding: var(--espacio-m) var(--espacio-l);
-  border-radius: 0.5rem;
-}
-
-button:hover,
-button:focus {
-  background-color: var(--azul-noche);
-  color: var(--crema);
-}
-
-button:focus {
-  outline: var(--indicador-foco);
-  outline-offset: 2px;
-}
-
-/* --- Tarjeta propia ---
-   USADA POR RESERVAS (aside de contacto). Inicio ya usa .card de Bootstrap */
 .tarjeta {
   padding: var(--espacio-m);
-  margin-bottom: var(--espacio-l);
   border: 2px solid var(--gris-asfalto);
   border-radius: 0.75rem;
   background-color: #fff;
 }
 
-.reservas-layout .tarjeta {
-  margin-bottom: 0;
-}
-
-/* --- Tablas ---  USADAS POR TARIFAS: relleno y letra reducidos en móvil */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: var(--espacio-l);
   font-size: 0.8125rem;
 }
 
@@ -275,15 +164,61 @@ th {
 
 caption {
   padding: var(--espacio-s);
+  color: var(--azul-noche);
   font-weight: 700;
 }
 
-/* --- Enlace fijo de WhatsApp (todas las páginas) --- */
+.table-responsive .tabla-bicicletas {
+  min-width: 30rem;
+}
+
+.table-responsive .tabla-rutas {
+  min-width: 36rem;
+}
+
+.table-responsive th,
+.table-responsive td {
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+
+form fieldset {
+  border: 2px solid var(--gris-asfalto);
+  border-radius: 0.5rem;
+}
+
+form legend {
+  color: var(--azul-noche);
+  font-family: var(--fuente-titulos);
+}
+
+.form-control,
+.form-select {
+  color: var(--azul-noche);
+  border: 2px solid var(--gris-asfalto);
+}
+
+.form-control:hover,
+.form-select:hover {
+  border-color: var(--azul-noche);
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: var(--verde-ruta);
+  outline: var(--indicador-foco);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+input.form-control[type="date"]:focus-visible {
+  border-color: var(--verde-ruta);
+  outline: var(--indicador-foco);
+  outline-offset: 2px;
+}
+
 .whatsapp-fijo {
-  position: fixed;
-  bottom: var(--espacio-m);
-  right: var(--espacio-m);
-  z-index: 100;
   padding: var(--espacio-s) var(--espacio-m);
   background-color: var(--verde-ruta);
   color: var(--crema);
@@ -303,149 +238,7 @@ caption {
   outline-offset: 2px;
 }
 
-/* --- Utilidades y prueba de herencia (bitácora) --- */
-.secundario {
-  color: var(--gris-asfalto);
-}
-
-.tarifa {
-  color: var(--gris-asfalto);              /* SE HEREDA */
-  border: 2px solid var(--naranja-pedal);  /* NO se hereda */
-  padding: var(--espacio-m);
-}
-
-
-/* ========== 6. PIE DE PÁGINA (móvil) ========== */
-/* Móvil: los tres bloques apilados en una columna */
-footer {
-  display: flex;
-  flex-direction: column;
-  gap: var(--espacio-l);
-  margin-top: var(--espacio-l);
-  padding-top: var(--espacio-m);
-  border-top: 2px solid var(--gris-asfalto);
-}
-
-/* Reboot de Bootstrap agranda los h2 (fluido hasta 2rem): en el pie se acota */
-footer h2 {
-  font-size: 1.25rem;
-}
-
-.pie-bloque ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-
-/* ========== 7. FORMULARIO Y RESERVAS (USADO POR RESERVAS) ========== */
-.reservas-layout {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--espacio-l);
-  align-items: start;
-}
-
-form fieldset {
-  margin-bottom: var(--espacio-l);
-  padding: var(--espacio-m);
-  border: 2px solid var(--gris-asfalto);
-  border-radius: 0.5rem;
-}
-
-form label {
-  display: block;
-  margin-bottom: var(--espacio-s);
-}
-
-input,
-select,
-textarea {
-  font-family: inherit;
-  color: var(--azul-noche);
-  border: 2px solid var(--gris-asfalto);
-  padding: var(--espacio-s);
-}
-
-form input[type="text"],
-form input[type="email"],
-form input[type="tel"],
-form input[type="date"],
-form input[type="number"],
-form select,
-form textarea {
-  display: block;
-  width: 100%;
-  margin-bottom: var(--espacio-m);
-}
-
-form input[type="radio"],
-form input[type="checkbox"] {
-  display: inline-block;
-  width: auto;
-  padding: 0;
-  margin-bottom: 0;
-}
-
-form input[type="radio"] + label,
-form input[type="checkbox"] + label {
-  display: inline-block;
-  margin-right: var(--espacio-m);
-}
-
-.fila-campos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--espacio-m);
-}
-
-.campo {
-  flex: 1 1 12rem;
-}
-
-input:hover,
-select:hover,
-textarea:hover {
-  border-color: var(--azul-noche);
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: var(--verde-ruta);
-  outline: var(--indicador-foco);
-  outline-offset: 2px;
-}
-
-
-/* ========== 8. TABLET (min-width: 768px) ========== */
 @media (min-width: 768px) {
-  body {
-    padding: var(--espacio-m) var(--espacio-m) 5rem;
-  }
-
-  main {
-    padding: var(--espacio-m);
-  }
-
-  /* Encabezado: se recupera la distribución en fila (nombre | menú) */
-  header {
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    text-align: left;
-  }
-
-  #menu {
-    justify-content: flex-end;
-  }
-
-  /* USADA POR RESERVAS: formulario y contacto en proporción 2:1 */
-  .reservas-layout {
-    grid-template-columns: 2fr 1fr;
-  }
-
-  /* USADA POR TARIFAS: letra y relleno normales */
   table {
     font-size: 1rem;
   }
@@ -453,30 +246,5 @@ textarea:focus {
   th,
   td {
     padding: var(--espacio-s) var(--espacio-m);
-  }
-
-  /* Pie: tres bloques en fila */
-  footer {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-
-  .pie-bloque {
-    flex: 1 1 12rem;
-  }
-}
-
-
-/* ========== 9. ESCRITORIO (min-width: 1200px) ========== */
-@media (min-width: 1200px) {
-  /* USADA POR TARIFAS/RESERVAS */
-  main {
-    max-width: 75rem;
-  }
-
-  h1 {
-    font-size: 2.25rem;
   }
 }

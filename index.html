@@ -16,21 +16,21 @@
 </head>
 
 <!-- px-0: quita el relleno lateral del body propio, porque .container ya lo aporta -->
-<body class="px-0">
+<body class="px-0 pb-5">
 
-  <header>
-    <a href="index.html" class="marca">
+  <header class="container d-flex flex-column flex-md-row align-items-center justify-content-md-between flex-wrap gap-3 py-3 text-center text-md-start">
+    <a href="index.html" class="marca d-flex align-items-center gap-2">
       <img src="img/Pasted image.png" alt="Logotipo" width="80" height="80">
       <span class="nombre-negocio">Rueda Libre</span>
     </a>
 
     <nav>
-      <ul id="menu">
-        <li><a href="index.html" class="activo" aria-current="page">Inicio</a></li>
-        <li><a href="paginas/tarifas.html">Ver tarifas</a></li>
-        <li><a href="paginas/reservas.html">Reservar ahora</a></li>
-        <li><a href="paginas/catalogo-bootstrap.html">Catalago Bootstrap</a></li>
-        <li><a href="#Encuentranos">Donde nos encuentras?</a></li>
+      <ul id="menu" class="nav justify-content-center justify-content-md-end gap-1">
+        <li><a href="index.html" class="nav-link activo" aria-current="page">Inicio</a></li>
+        <li><a class="nav-link" href="paginas/tarifas.html">Ver tarifas</a></li>
+        <li><a class="nav-link" href="paginas/reservas.html">Reservar ahora</a></li>
+        <li><a class="nav-link" href="paginas/catalogo-bootstrap.html">Catálogo de la flota</a></li>
+        <li><a class="nav-link" href="#Encuentranos">Dónde nos encuentras</a></li>
       </ul>
     </nav>
   </header>
@@ -247,22 +247,23 @@
 
   </main>
 
-  <footer>
-    <section class="pie-bloque">
+  <footer class="container py-4">
+    <div class="row g-4 border-top border-secondary pt-4">
+    <section class="pie-bloque col-12 col-md-4">
       <h2 id="Encuentranos">Rueda Libre</h2>
       <p>Alquiler de bicicletas y tours en Medellín.</p>
       <p><strong>Nos puedes encontrar en:</strong> cl 104 #99-99</p>
     </section>
 
-    <section class="pie-bloque">
+    <section class="pie-bloque col-12 col-md-4">
       <h2>Contáctanos</h2>
-      <ul>
+      <ul class="list-unstyled">
         <li>Correo: <a href="mailto:MTBMD@gmail.com">MTBMD@gmail.com</a></li>
         <li>WhatsApp: <a href="tel:+573022020020">+57 302 202 0020</a></li>
       </ul>
     </section>
 
-    <section class="pie-bloque">
+    <section class="pie-bloque col-12 col-md-4">
       <h2>Horario de atención</h2>
       <dl>
         <dt>Lunes a viernes:</dt>
@@ -271,9 +272,13 @@
         <dd>6:00 AM - 2:00 PM</dd>
       </dl>
     </section>
+    </div>
   </footer>
 
+  <div class="container text-end py-2 d-lg-none">
   <a href="https://wa.me/573000000000" class="whatsapp-fijo" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+</div>
+<a href="https://wa.me/573000000000" class="whatsapp-fijo d-none d-lg-inline-block position-fixed bottom-0 end-0 m-3 z-3" target="_blank" rel="noopener noreferrer">WhatsApp</a>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
