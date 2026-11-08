@@ -8,22 +8,29 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="../estilos/estilos.css">
 </head>
 <body class="px-0 pb-5">
-  <header class="container d-flex flex-column flex-md-row align-items-center justify-content-md-between flex-wrap gap-3 py-3 text-center text-md-start">
-    <a href="../index.html" class="marca d-flex align-items-center gap-2">
-      <img src="../img/Pasted image.png" alt="Logotipo de Rueda Libre" width="80" height="80">
-      <span class="nombre-negocio">Rueda Libre</span>
-    </a>
-    <nav aria-label="Navegación principal">
-      <ul id="menu" class="nav justify-content-center justify-content-md-end gap-1">
-        <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="../paginas/tarifas.html">Ver tarifas</a></li>
-        <li class="nav-item"><a class="nav-link activo" href="../paginas/reservas.html" aria-current="page">Reservar ahora</a></li>
-        <li class="nav-item"><a class="nav-link" href="../paginas/catalogo-bootstrap.html">Catálogo de la flota</a></li>
-        <li class="nav-item"><a class="nav-link" href="#Encuentranos">Dónde nos encuentras</a></li>
-      </ul>
+  <header class="border-bottom">
+    <nav class="navbar navbar-expand-lg container py-3" aria-label="Navegación principal">
+      <a class="navbar-brand marca d-flex align-items-center gap-2" href="../index.html">
+        <img src="../img/Pasted image.png" alt="Logotipo de Rueda Libre" width="80" height="80">
+        <i class="bi bi-bicycle" aria-hidden="true"></i>
+        <span class="nombre-negocio">Rueda Libre</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-lg-auto gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="../paginas/tarifas.html">Ver tarifas</a></li>
+          <li class="nav-item"><a class="nav-link active" href="../paginas/reservas.html" aria-current="page">Reservar ahora</a></li>
+          <li class="nav-item"><a class="nav-link" href="../paginas/catalogo-bootstrap.html">Catálogo de la flota</a></li>
+          <li class="nav-item"><a class="nav-link" href="#Encuentranos">Dónde nos encuentras</a></li>
+        </ul>
+      </div>
     </nav>
   </header>
 
@@ -32,25 +39,33 @@
 
     <div class="row g-4 align-items-start">
       <section class="col-12 col-md-8" aria-label="Formulario de reserva">
-        <form action="procesar-reserva.php" method="post">
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+          <strong>Recuerda:</strong> presenta tu documento de identidad original al recoger la bicicleta.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar recordatorio"></button>
+        </div>
+        <form action="procesar-reserva.php" method="post" class="needs-validation" novalidate>
           <fieldset class="mb-4 p-3">
             <legend class="float-none w-auto px-2 fw-bold">Tus datos</legend>
             <div class="row g-3">
               <div class="col-12 col-sm-6">
                 <label class="form-label" for="nombre">Nombre completo:</label>
-                <input class="form-control" type="text" id="nombre" name="nombre" required minlength="3" maxlength="100">
+                <input class="form-control" type="text" id="nombre" name="nombre" required minlength="3" maxlength="100" aria-describedby="nombre-feedback">
+                <div id="nombre-feedback" class="invalid-feedback">Escribe tu nombre completo con al menos 3 caracteres.</div>
               </div>
               <div class="col-12 col-sm-6">
                 <label class="form-label" for="documento">Número de documento:</label>
-                <input class="form-control" type="text" id="documento" name="documento" inputmode="numeric" required pattern="[0-9]{6,10}">
+                <input class="form-control" type="text" id="documento" name="documento" inputmode="numeric" required pattern="[0-9]{6,10}" aria-describedby="documento-feedback">
+                <div id="documento-feedback" class="invalid-feedback">Escribe un número de documento de 6 a 10 dígitos.</div>
               </div>
               <div class="col-12 col-sm-6">
                 <label class="form-label" for="correo">Correo electrónico:</label>
-                <input class="form-control" type="email" id="correo" name="correo" required>
+                <input class="form-control" type="email" id="correo" name="correo" required aria-describedby="correo-feedback">
+                <div id="correo-feedback" class="invalid-feedback">Escribe un correo electrónico válido.</div>
               </div>
               <div class="col-12 col-sm-6">
                 <label class="form-label" for="telefono">Teléfono:</label>
-                <input class="form-control" type="tel" id="telefono" name="telefono" required maxlength="10" pattern="3[0-9]{9}" title="Escribe 10 digitos y que empiece por 3, sin espacios. ejemplo: 3004578956">
+                <input class="form-control" type="tel" id="telefono" name="telefono" required maxlength="10" pattern="3[0-9]{9}" title="Escribe 10 digitos y que empiece por 3, sin espacios. ejemplo: 3004578956" aria-describedby="telefono-feedback">
+                <div id="telefono-feedback" class="invalid-feedback">Escribe 10 dígitos, comenzando por 3 y sin espacios.</div>
               </div>
             </div>
           </fieldset>
@@ -60,7 +75,8 @@
             <div class="row g-3">
               <div class="col-12 col-sm-6">
                 <label class="form-label" for="fecha">Fecha:</label>
-                <input class="form-control" type="date" id="fecha" name="fecha" required min="2026-11-01" max="2026-12-31">
+                <input class="form-control" type="date" id="fecha" name="fecha" required min="2026-11-01" max="2026-12-31" aria-describedby="fecha-feedback">
+                <div id="fecha-feedback" class="invalid-feedback">Elige una fecha entre el 1 de noviembre y el 31 de diciembre de 2026.</div>
               </div>
               <div class="col-12 col-sm-6">
                 <label class="form-label" for="servicio">Tipo de bicicleta:</label>
@@ -74,6 +90,7 @@
                   <option value="bicicleta Tandem">Tándem</option>
                   <option value="bicicleta electrica">Eléctrica</option>
                 </select>
+                <div id="servicio-feedback" class="invalid-feedback">Selecciona el tipo de bicicleta que deseas reservar.</div>
               </div>
             </div>
           </fieldset>
@@ -82,8 +99,9 @@
             <legend class="float-none w-auto px-2 fw-bold">Plan</legend>
             <div class="d-flex flex-column flex-sm-row flex-wrap gap-3">
               <div class="form-check">
-                <input class="form-check-input" type="radio" id="plan-hora" name="plan" value="1-hora" required>
+                <input class="form-check-input" type="radio" id="plan-hora" name="plan" value="1-hora" required aria-describedby="plan-feedback">
                 <label class="form-check-label" for="plan-hora">1 hora</label>
+                <div id="plan-feedback" class="invalid-feedback">Elige uno de los planes de alquiler.</div>
               </div>
               <div class="form-check">
                 <input class="form-check-input" type="radio" id="plan-medio" name="plan" value="medio-dia">
@@ -107,10 +125,12 @@
                   <option value="tour sabores de barrio">Sabores de barrio</option>
                   <option value="tour reto las palmas">Reto Las Palmas</option>
                 </select>
+                <div id="tour-feedback" class="invalid-feedback">Selecciona el recorrido guiado que deseas realizar.</div>
               </div>
               <div class="col-12 col-sm-6">
                 <label class="form-label" for="cantidad">Cantidad de bicicletas:</label>
-                <input class="form-control" type="number" id="cantidad" name="cantidad" min="1" max="6" value="1" required>
+                <input class="form-control" type="number" id="cantidad" name="cantidad" min="1" max="6" value="1" required aria-describedby="cantidad-feedback">
+                <div id="cantidad-feedback" class="invalid-feedback">Indica una cantidad entre 1 y 6 bicicletas.</div>
               </div>
             </div>
           </fieldset>
@@ -120,12 +140,14 @@
             <label class="form-label" for="comentarios">Comentarios:</label>
             <textarea class="form-control mb-3" id="comentarios" name="comentarios" rows="4" cols="40" maxlength="300"></textarea>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="politicas" name="politicas" value="aceptadas" required>
+              <input class="form-check-input" type="checkbox" id="politicas" name="politicas" value="aceptadas" required aria-describedby="politicas-feedback">
               <label class="form-check-label" for="politicas">Acepto las políticas de alquiler</label>
+              <div id="politicas-feedback" class="invalid-feedback">Debes aceptar las políticas de alquiler para enviar la reserva.</div>
+              <button type="button" class="btn btn-outline-success btn-sm mt-2" data-bs-toggle="modal" data-bs-target="#politicasModal">Ver políticas de alquiler</button>
             </div>
           </fieldset>
 
-          <button class="boton-cta" type="submit">Enviar reserva</button>
+          <button class="btn btn-primary btn-lg" type="submit">Enviar reserva</button>
         </form>
       </section>
 
@@ -133,8 +155,8 @@
         <section class="contacto tarjeta">
           <h2 id="contacto-reservas" class="h4">Contáctanos</h2>
           <ul class="list-unstyled mb-0">
-            <li class="mb-2">Correo: <a href="mailto:MTBMD@gmail.com">MTBMD@gmail.com</a></li>
-            <li class="mb-2">WhatsApp: <a href="tel:+573022020020">+57 302 202 0020</a></li>
+            <li class="mb-2"><i class="bi bi-envelope" aria-hidden="true"></i> Correo: <a href="mailto:MTBMD@gmail.com">MTBMD@gmail.com</a></li>
+            <li class="mb-2"><i class="bi bi-whatsapp" aria-hidden="true"></i> WhatsApp: <a href="tel:+573022020020">+57 302 202 0020</a></li>
             <li>Dirección: cl 104 #99-99</li>
           </ul>
         </section>
@@ -142,12 +164,35 @@
     </div>
   </main>
 
-  <div class="container text-end py-2 d-lg-none">
-  <a href="https://wa.me/573000000000" class="whatsapp-fijo" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-</div>
-<a href="https://wa.me/573000000000" class="whatsapp-fijo d-none d-lg-inline-block position-fixed bottom-0 end-0 m-3 z-3" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <div class="modal fade" id="politicasModal" tabindex="-1" aria-labelledby="politicasModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="politicasModalLabel">Políticas de alquiler</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar políticas"></button>
+        </div>
+        <div class="modal-body">
+          <ol>
+            <li>Presenta tu documento de identidad original al recoger la bicicleta.</li>
+            <li>Revisa la bicicleta con el asesor antes de salir.</li>
+            <li>Cada 15 minutos de retraso en la devolución tienen un recargo de $5.000.</li>
+            <li>Los daños por mal uso se cobran según el costo de la reparación.</li>
+            <li>Los menores de edad deben estar acompañados por un adulto responsable.</li>
+          </ol>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <footer class="container py-4">
+  <div class="container text-end py-2 d-lg-none">
+  <a href="https://wa.me/573000000000" class="whatsapp-fijo" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp" aria-hidden="true"></i> <span>WhatsApp</span></a>
+</div>
+<a href="https://wa.me/573000000000" class="whatsapp-fijo d-none d-lg-inline-block position-fixed bottom-0 end-0 m-3 z-3" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp" aria-hidden="true"></i> <span>WhatsApp</span></a>
+
+  <footer class="container py-4 pie-marca">
     <div class="row g-4 border-top border-secondary pt-4">
       <section class="pie-bloque col-12 col-md-4">
         <h2 id="Encuentranos">Rueda Libre</h2>
@@ -157,8 +202,8 @@
       <section class="pie-bloque col-12 col-md-4">
         <h2>Contáctanos</h2>
         <ul class="list-unstyled">
-          <li>Correo: <a href="mailto:MTBMD@gmail.com">MTBMD@gmail.com</a></li>
-          <li>WhatsApp: <a href="tel:+573022020020">+57 302 202 0020</a></li>
+          <li><i class="bi bi-envelope" aria-hidden="true"></i> Correo: <a href="mailto:MTBMD@gmail.com">MTBMD@gmail.com</a></li>
+          <li><i class="bi bi-whatsapp" aria-hidden="true"></i> WhatsApp: <a href="tel:+573022020020">+57 302 202 0020</a></li>
         </ul>
       </section>
       <section class="pie-bloque col-12 col-md-4">
@@ -172,5 +217,25 @@
       </section>
     </div>
   </footer>
+
+  <script>
+    (() => {
+      'use strict'
+
+      const forms = document.querySelectorAll('.needs-validation')
+
+      Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+
+          form.classList.add('was-validated')
+        }, false)
+      })
+    })()
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

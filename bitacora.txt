@@ -37,23 +37,23 @@ Fecha → input type="date" y cantidad → input type="number". El selector de f
 
 
 Campo	Dato de prueba	Resultado esperado	Resultado obtenido
-1	Nombre	Al (2 caracteres)	Rechaza: mínimo 3 caracteres	
-2	Nombre	(vacío)	Rechaza: campo obligatorio	
-3	Documento	12345 (5 dígitos)	Rechaza y muestra el title	
-4	Documento	12345678901 (11 dígitos)	Rechaza y muestra el title	
-5	Documento	12ab5678	Rechaza y muestra el title	
-6	Documento	1020304050	Acepta	
-7	Correo	juan@	Rechaza: formato de correo inválido	
-8	Celular	2001234567 (empieza por 2)	Rechaza y muestra el title	
-9	Celular	300123456 (9 dígitos)	Rechaza y muestra el title	
-10	Celular	3001234567	Acepta	
-11	Fecha	31/10/2026	Rechaza: menor al mínimo	
-12	Fecha	01/01/2027	Rechaza: mayor al máximo	
-13	Cantidad	0	Rechaza: mínimo 1	
-14	Cantidad	7	Rechaza: máximo 6	
-15	Comentarios	Texto de más de 300 caracteres	No deja escribir más de 300	
-16	Políticas	Casilla sin marcar	Rechaza: debe aceptarla	
-17	Tipo / Plan	Sin elegir ninguno	Rechaza: elige una opción	
+1	Nombre	Al (2 caracteres)	Rechaza: mínimo 3 caracteres	validity.tooShort = true
+2	Nombre	(vacío)	Rechaza: campo obligatorio	validity.valueMissing = true
+3	Documento	12345 (5 dígitos)	Rechaza: pattern [0-9]{6,10} no coincide	validity.patternMismatch = true
+4	Documento	12345678901 (11 dígitos)	Rechaza: pattern [0-9]{6,10} no coincide	validity.patternMismatch = true
+5	Documento	12ab5678	Rechaza: pattern [0-9]{6,10} no coincide	validity.patternMismatch = true
+6	Documento	1020304050	Acepta	validity.valid = true
+7	Correo	juan@	Rechaza: formato de correo inválido	validity.typeMismatch = true
+8	Celular	2001234567 (empieza por 2)	Rechaza y muestra el title	validity.patternMismatch = true; título nativo disponible
+9	Celular	300123456 (9 dígitos)	Rechaza y muestra el title	validity.patternMismatch = true; título nativo disponible
+10	Celular	3001234567	Acepta	validity.valid = true
+11	Fecha	31/10/2026	Rechaza: menor al mínimo	validity.rangeUnderflow = true
+12	Fecha	01/01/2027	Rechaza: mayor al máximo	validity.rangeOverflow = true
+13	Cantidad	0	Rechaza: mínimo 1	validity.rangeUnderflow = true
+14	Cantidad	7	Rechaza: máximo 6	validity.rangeOverflow = true
+15	Comentarios	Texto de más de 300 caracteres	No deja escribir más de 300	maxlength = 300; al llenar 301, retiene 300
+16	Políticas	Casilla sin marcar	Rechaza: debe aceptarla	validity.valueMissing = true
+17	Tipo / Plan	Sin elegir ninguno	Rechaza: elige una opción	validity.valueMissing = true en select y grupo radio
 
 Página	           Hallazgo	           Corrección
 tarifas.html	   lang="en"           Cambiar el lang="en" a lang="es"
@@ -157,8 +157,8 @@ Pruebas, decisiones y mediciones
 Decisión: el CTA y WhatsApp usan clases propias, para no pelear con #menu a (especificidad 1,0,1).
 Decisión: position: absolute para la etiqueta (no afecta el flujo) y fixed para WhatsApp (siempre visible).
 Medición: ancho de tarjeta con content-box vs border-box, registrado en el MiniReto 11.
-Prueba: recorrido con Tab en las tres páginas, sin perder el foco. Resultado: ______
-Prueba: errores 404 en Network. Resultado: ______
+Prueba: recorrido con Tab en inicio, tarifas y reservas. Resultado: enlaces y campos principales con indicador visible; #fecha muestra outline sólido de 3 px al llegar con Tab.
+Prueba: solicitudes de las cuatro páginas y recursos en Network. Resultado: sin respuestas HTTP >=400; las cuatro rutas respondieron 200.
 Qué mejoraría (semana 2)
 Diseño responsive con @media para móviles.
 Un formulario conectado a un servicio real (la acción .php no corre en GitHub Pages).
@@ -214,14 +214,14 @@ Encabezado	Flexbox	Una fila (o columna en móvil) con dos elementos
 Pie	Flexbox	Tres bloques en una dimensión
 Problemas responsive encontrados y solución
 
-Anota los que viste tú. Estos son los que es probable que aparezcan, con su causa:
+Problemas responsive revisados en la migración Bootstrap y solución actual:
 
 #	Problema	Causa	Solución
-1	Las tablas de tarifas se desbordaban a 360 px y obligaban a desplazarse de lado	Relleno y letra de escritorio en una tabla de cinco columnas	Relleno --espacio-xs, letra de 0.8125rem y overflow-wrap: anywhere en móvil; valores normales desde 768 px
-2	El menú se amontonaba y quedaba pegado al nombre	El encabezado seguía en fila en pantallas angostas	flex-direction: column y menú centrado en móvil; fila con space-between desde tablet
-3	Las columnas de portada, galería y reservas quedaban demasiado angostas	Columnas definidas para escritorio sin condición	Una columna en base; 1fr 1fr, repeat(3, 1fr) y 2fr 1fr solo desde 768 px
-4	Los bloques del pie quedaban estirados en móvil	flex: 1 1 14rem se aplicaba a la altura al estar en columna	La regla flex pasó a la media query de tablet, cuando el pie es una fila
-5	Imágenes más anchas que su contenedor	Atributos width fijos sin regla fluida	img { max-width: 100%; height: auto } global
+1	Las tablas de tarifas se desbordaban a 360 px y obligaban a desplazarse de lado	Relleno y letra de escritorio en una tabla de cinco columnas	Bootstrap .table-responsive, min-width 30rem/36rem y celdas nowrap; el scroll queda dentro de cada tabla
+2	El menú se amontonaba y quedaba pegado al nombre	El encabezado seguía en fila en pantallas angostas	header flex-column/flex-md-row; nav y gap de Bootstrap, con envoltura centrada en móvil
+3	Las columnas de portada, galería y reservas quedaban demasiado angostas	Columnas definidas para escritorio sin condición	row-cols responsivas en portada/flota y col-12 col-md-8/4 en reservas
+4	Los bloques del pie quedaban estirados en móvil	flex: 1 1 14rem se aplicaba a la altura al estar en columna	row de Bootstrap con col-12 col-md-4 para cada bloque
+5	Imágenes más anchas que su contenedor	Atributos width fijos sin regla fluida	.img-fluid para imágenes fluidas y .card-img-top en tarjetas Bootstrap
 
 Datos de la comparación
 Medida	Versión CSS propio	Versión Bootstrap
@@ -249,3 +249,92 @@ Columnas:
 
 Bootstrap: menos de 576 px es 1 columna, desde 576 px (sm) son 2, y desde 1200 px (xl) son 4. Eso da 1 / 2 / 4.
 Tu versión: mis cálculos con minmax(16rem, 1fr), gap de 2rem y el main de 75rem en escritorio dan 1 / 2 / 4. A 1280 px puede salirte 3 si hay barra de scroll que reste ancho, así que confírmalo en DevTools y corrige la celda si ves otro número.
+
+
+COMPARATIVA FINAL — Migración a Bootstrap / v2.0-beta
+Fecha de revisión: 2026-11-08
+
+Base y método de medición
+- El historial consultado no contiene un tag llamado v1.5. Para que el dato sea reproducible, tomo como referencia el último commit previo a la fase Bootstrap: 9eb09f1 (2026-11-06 17:51:18, rama nascar). El archivo estilos/estilos.css en ese commit tiene 423 líneas físicas (git show 9eb09f1:estilos/estilos.css | wc -l).
+- El estado justo antes de limpiar los estilos, commit 1599d45 (2026-11-08 03:21:47), tenía 481 líneas en estilos/estilos.css.
+- La hoja después de la limpieza tiene 250 líneas físicas. Se cuentan también líneas vacías y comentarios con wc -l.
+
+Reducción de CSS
+Referencia                 Líneas
+v1.5 (referencia 9eb09f1)  423
+Antes de limpiar (1599d45) 481
+v2.0-beta, CSS final antes de identidad 246
+v2.0, CSS final con identidad 269
+Frente a v1.5: 173 líneas menos (40.9%). Frente al estado inmediatamente anterior a la limpieza: 231 líneas menos (48.0%). La hoja conserva variables, tipografía, colores, tarjetas, tablas y estados; ya no define grids, flex de página, columnas, anchos de main ni posiciones fijas.
+
+Tiempo registrado y tiempo observable
+- La bitácora anterior anota para la tarea de la flota una estimación de aproximadamente 45 min con CSS propio y 20 min con Bootstrap: 25 min menos (55.6%) en esa tarea concreta. Son estimaciones registradas, no cronometraje automatizado.
+- No hay registro de horas activas para construir las versiones completas. Como referencia distinta, los commits de CSS de la etapa tomada como v1.5 abarcan 45 h 11 min 35 s entre ec26628 (2026-11-04 20:39:43) y 9eb09f1 (2026-11-06 17:51:18). La fase Bootstrap ya registrada en Git abarca 2 h 00 min 12 s entre 3d3ec26 (2026-11-08 01:21:35) y 1599d45 (2026-11-08 03:21:47). Estos intervalos son tiempo transcurrido entre commits, incluyen pausas y no equivalen a tiempo efectivo de trabajo.
+
+Ventajas observadas
+- Bootstrap sustituye reglas de distribución repetidas por grilla y utilidades conocidas: tarifas apila en móvil y queda en dos columnas desde lg; reservas conserva la proporción 8/4 desde md.
+- La cascada queda explícita: Bootstrap carga primero y estilos.css después, donde el puente de variables mantiene la identidad sin !important.
+- La hoja propia bajó de 423 a 246 líneas respecto a la referencia histórica; la reducción de layout permite ajustar columnas en el HTML sin añadir media queries de distribución.
+
+Desventajas observadas
+- La distribución se expresa ahora con más clases en el HTML; hay que mantenerlas coherentes en cada página y comprender el orden de cascada.
+- Bootstrap no resuelve por sí solo tablas anchas: a 360 px requieren desplazamiento horizontal dentro de .table-responsive para mantener precios y encabezados legibles.
+- El CSS de Bootstrap y las fuentes se cargan desde CDN; sin conexión o si cambia el recurso externo, el sitio puede perder su capa de estilos o tipografía.
+- Las horas globales de cada versión no se pueden comparar honestamente: Git registra commits y no horas activas. La única comparación temporal explícita de la bitácora es la tarea de la flota (45 min aprox. frente a 20 min).
+
+Verificación responsive de la migración
+- Se revisaron las cuatro páginas HTML enlazadas en el repositorio (inicio, tarifas, reservas y catálogo) a 360, 768 y 1280 px: respuesta HTTP 200, sin desbordamiento horizontal del documento y sin errores JavaScript.
+- Tarifas: las tablas quedan en una columna hasta antes de lg y junto a la información complementaria desde lg; a 360 px el scroll queda contenido en cada tabla.
+- Reservas: formulario e información de contacto usan columnas 8/4 desde md; las filas de campos cortos usan .row y columnas responsivas.
+- Los atributos nativos de validación de los 13 controles se conservaron exactamente (required, tipos, pattern, minlength/maxlength, min/max y demás presentes). Se corrigió únicamente el id duplicado del selector de tour para que sus etiquetas sean únicas.
+
+Conclusión
+Sí hay evidencia de que Bootstrap redujo trabajo repetitivo en la tarea medida: la flota pasó de una estimación de 45 a 20 minutos y la hoja actual tiene 173 líneas menos que la referencia pre-Bootstrap. No se puede afirmar que haya reducido en esa misma proporción el tiempo total de cada versión, porque las horas activas no se registraron y los intervalos de commits incluyen pausas. La decisión es conservar Bootstrap para grilla y utilidades, y mantener estilos.css acotado a identidad visual, tablas y estados.
+
+Publicación
+El formulario conserva validación cliente, pero su action heredado apunta a procesar-reserva.php; GitHub Pages no ejecuta PHP y el envío válido requiere conectar un backend. Esto está fuera de la migración y no se presenta como funcionalidad verificada.
+
+La URL de GitHub Pages comprobada durante esta tarea respondió 404 y el endpoint público de configuración de Pages también devolvió 404. Por tanto, esta revisión no considera v2.0-beta publicada todavía; hace falta habilitar Pages y subir la rama de versión con permisos de escritura. No se marca como publicada hasta que GitHub confirme el despliegue.
+
+CIERRE DE LA SEMANA — MINIRETOS 1 A 12 Y LANZAMIENTO V2.0
+
+Resumen
+La semana integra el sitio responsive de Rueda Libre en una sola solución Bootstrap: estructura semántica, grilla, cards, navbar colapsable, botones, carrusel, validación visual del formulario, alerta, modal de políticas, variables de marca, clases propias e iconos. La hoja propia se mantiene después de Bootstrap y sólo complementa la cascada; el bundle de JavaScript se carga una vez por página.
+
+Mapa de construcción del producto final
+
+| MiniReto | Aporte | Parte del producto | Conexión |
+|---|---|---|---|
+| 1. Encabezado Flexbox | Estructura inicial de encabezado, menú y pie | Estructura común | La navbar responsive reemplaza el menú anterior en el MiniReto 9 |
+| 2. Flota en cuadrícula | Flota inicial y tarjetas alineadas | Catálogo de la flota | La grilla se migra a Bootstrap y luego a cards |
+| 3. Layout en dos dimensiones | Columnas de portada, rutas y reservas | Distribución de escritorio | Se adapta a móvil y después a la grilla Bootstrap |
+| 4. Mobile-first | Media queries y comportamiento responsive | Sitio responsive de referencia | Sirve para comparar con Bootstrap |
+| 5. Flota en Bootstrap | Primera migración y comparación | Catálogo | Prepara la integración de cards |
+| 6. Utilidades | Beneficios y franja CTA | Secciones de inicio | Se conservan como utilidades Bootstrap |
+| 7. Inicio Bootstrap | Portada con grilla y utilidades | Página de inicio | El método se repite en tarifas y reservas |
+| 8. Migración completa | Tarifas, reservas y comparativa | v2.0-beta | Base para los componentes interactivos |
+| 9. Navbar y botones | Menú colapsable y CTAs unificados | Navegación | Los botones se reutilizan en cards y formulario |
+| 10. Cards y promociones | Cards de flota/rutas y carrusel | Contenido de inicio | Recibe la identidad de marca en el MiniReto 12 |
+| 11. Reservas confiables | Validación visual, alerta y modal | Página de reservas | Sus componentes reciben la identidad de marca |
+| 12. Identidad propia | Variables, variante naranja, clases e iconos | Producto final | Integra los 11 MiniRetos anteriores y prepara v2.0 |
+
+Personalización final
+- Variables Bootstrap sobrescritas: `--bs-primary`, `--bs-primary-rgb`, `--bs-body-font-family`, `--bs-link-color`, `--bs-nav-link-color` y `--bs-border-radius`.
+- Botón principal: Verde Ruta (#1E7A4F), hover #155C3B y active #10462D.
+- Variante `.btn-naranja`: Naranja Pedal (#F39A2B) con texto Azul Noche (#14213D), contraste 7.2:1.
+- Clases propias complementarias: `.portada`, `.titulo-seccion`, `.beneficio-marca`, `.pie-marca` y `.btn-naranja`.
+- Bootstrap Icons se usan en navbar, contacto, beneficios y WhatsApp; los iconos decorativos tienen `aria-hidden="true"`. Los botones sólo iconográficos tienen `aria-label`.
+
+Pruebas finales
+- 360, 768 y 1280 px: las cuatro páginas respondieron 200, sin overflow horizontal ni errores JavaScript.
+- Teclado: navegación con Tab y controles de carrusel accesibles; botones sólo iconográficos con nombre accesible.
+- Bundle Bootstrap: una carga por página; Bootstrap Icons se carga después de Bootstrap CSS y antes de `estilos.css`.
+- Contraste comprobado: Verde Ruta sobre Crema 4.9:1; Crema sobre Verde Ruta 4.9:1; Azul Noche sobre Naranja Pedal 7.2:1; Azul Noche sobre Crema 14.8:1; Gris Asfalto sobre Crema 5.6:1; Blanco sobre Verde Ruta 4.9:1.
+- No hay reglas con `!important`, no se modificó el archivo de Bootstrap y no quedan clases HTML de la versión `.activo`.
+
+Capturas de personalización
+- Antes: `img/capturas/antes-personalizacion.png`
+- Después: `img/capturas/despues-personalizacion.png`
+
+Lanzamiento v2.0
+El commit de lanzamiento de esta personalización se crea sobre la rama `v2.0-beta`. El push y la publicación en GitHub Pages requieren autenticación GitHub válida en la sesión; el repositorio local queda listo para publicar la rama con `git push -u origin v2.0-beta`.

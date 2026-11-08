@@ -16,7 +16,9 @@
   --espacio-l: 2rem;
   --indicador-foco: 3px solid var(--azul-noche);
 
-  /* Puente de color y tipografía para la cascada de Bootstrap */
+  /* Variables globales de Bootstrap personalizadas */
+  --bs-primary: var(--verde-ruta);
+  --bs-primary-rgb: 30, 122, 79;
   --bs-body-font-family: var(--fuente-texto);
   --bs-body-color: var(--azul-noche);
   --bs-body-color-rgb: 20, 33, 61;
@@ -25,6 +27,9 @@
   --bs-secondary-color: var(--gris-asfalto);
   --bs-link-color: var(--verde-ruta);
   --bs-link-hover-color: var(--azul-noche);
+  --bs-nav-link-color: var(--verde-ruta);
+  --bs-nav-link-hover-color: var(--azul-noche);
+  --bs-border-radius: 0.75rem;
   --bs-success: var(--verde-ruta);
   --bs-success-rgb: 30, 122, 79;
   --bs-warning: var(--naranja-pedal);
@@ -32,6 +37,48 @@
   --bs-primary-text-emphasis: var(--azul-noche);
   --bs-form-check-input-checked-bg-color: var(--verde-ruta);
   --bs-form-check-input-checked-border-color: var(--verde-ruta);
+}
+.btn-primary {
+  --bs-btn-color: var(--crema);
+  --bs-btn-bg: var(--verde-ruta);
+  --bs-btn-border-color: var(--verde-ruta);
+  --bs-btn-hover-color: var(--crema);
+  --bs-btn-hover-bg: #155c3b;
+  --bs-btn-hover-border-color: #155c3b;
+  --bs-btn-active-color: var(--crema);
+  --bs-btn-active-bg: #10462d;
+  --bs-btn-active-border-color: #10462d;
+}
+
+.btn-naranja {
+  --bs-btn-color: var(--azul-noche);
+  --bs-btn-bg: var(--naranja-pedal);
+  --bs-btn-border-color: var(--naranja-pedal);
+  --bs-btn-hover-color: var(--azul-noche);
+  --bs-btn-hover-bg: #d77f16;
+  --bs-btn-hover-border-color: #d77f16;
+  --bs-btn-active-color: var(--azul-noche);
+  --bs-btn-active-bg: #b86b12;
+  --bs-btn-active-border-color: #b86b12;
+}
+
+.portada {
+  background: linear-gradient(180deg, rgba(243, 154, 43, 0.08), transparent 18rem);
+}
+
+.titulo-seccion {
+  letter-spacing: 0.02em;
+  border-left: 0.35rem solid var(--naranja-pedal);
+  padding-left: var(--espacio-s);
+}
+
+.beneficio-marca {
+  border-color: var(--verde-ruta);
+  border-top: 0.35rem solid var(--naranja-pedal);
+}
+
+.pie-marca {
+  border-top: 0.35rem solid var(--naranja-pedal);
 }
 
 body {
@@ -80,12 +127,6 @@ a:focus {
   border-bottom: 3px solid transparent;
 }
 
-#menu a.activo {
-  color: var(--verde-ruta);
-  font-weight: 600;
-  border-bottom-color: var(--verde-ruta);
-}
-
 #menu a:hover,
 #menu a:focus {
   background-color: var(--gris-asfalto);
@@ -112,28 +153,6 @@ a:focus {
 strong,
 .destacado {
   font-weight: 600;
-}
-
-.boton-cta {
-  display: inline-block;
-  padding: var(--espacio-s) var(--espacio-l);
-  background-color: var(--verde-ruta);
-  color: var(--crema);
-  font-weight: 600;
-  text-decoration: none;
-  border: 0;
-  border-radius: 0.5rem;
-}
-
-.boton-cta:hover,
-.boton-cta:focus {
-  background-color: var(--naranja-pedal);
-  color: var(--azul-noche);
-}
-
-.boton-cta:focus {
-  outline: var(--indicador-foco);
-  outline-offset: 3px;
 }
 
 .tarjeta {
