@@ -377,3 +377,32 @@ La página `nocturna/componentes.html` reúne los cuatro componentes del kit y e
 - Interacción: cada botón y campo tiene variantes `hover:` o `focus:` con anillo visible; todos los controles se pueden recorrer con Tab.
 
 Las alertas comparten las mismas clases base de radio, espaciado, borde y sombra; sólo cambian sus colores y mensajes. La alerta de éxito usa `role="status"` para comunicar el aviso a lectores de pantalla. Los campos tienen `label` visible asociado mediante `for`/`id`, texto de ayuda con `aria-describedby` y foco visible.
+
+
+MINIRETO: LANDING COMPLETA CON LAYOUT TAILWIND
+
+La landing de `nocturna/index.html` usa las etiquetas semánticas `header`, `nav`, `main`, `section`, `article` y `footer`. Todas las secciones comparten el contenedor `mx-auto w-full max-w-5xl` con relleno lateral `px-6 sm:px-10`, para que el ancho y la alineación sean consistentes.
+
+Decisión de layout: usé CSS Grid para las rutas porque son tres elementos del mismo tipo que deben ocupar tres columnas iguales en escritorio; `grid gap-6 lg:grid-cols-3` expresa directamente esa relación y mantiene una sola columna en móvil. También usé Grid para “¿Cómo funciona?” porque son cuatro pasos independientes que se distribuyen de forma regular: `grid gap-6 sm:grid-cols-2 lg:grid-cols-4`. La cuadrícula permite que el contenedor controle filas, columnas y separación sin crear variantes nuevas de los componentes. El encabezado y el pie usan Flexbox porque sus elementos se organizan en una dimensión: logo, navegación y CTA en el header; tres bloques de información en el footer.
+
+Las cards y los botones se copiaron del kit de `componentes.html` sin crear variantes nuevas. Las anclas del encabezado apuntan a `#inicio`, `#rutas`, `#como-funciona` e `#inscripcion`.
+
+
+MINIRETO: RESPONSIVE MOBILE-FIRST DE LA LANDING
+
+Revisión inicial a 360 px
+Antes del ajuste, la landing mostraba todos los enlaces del encabezado en un espacio muy estrecho: el menú se envolvía y competía con el logo y el botón. Las cards de rutas ya se apilaban, pero el relleno vertical de las secciones y el tamaño del subtítulo eran demasiado amplios para una lectura cómoda. La fila de precio y botón de cada card podía quedar apretada en el celular. También faltaba una regla explícita que ocultara los enlaces de sección en móvil y conservara sólo “Inscríbete”.
+
+Corrección mobile-first
+Las clases sin prefijo definen ahora el celular: `flex-col`, `grid-cols-1`, `px-4`, `py-12`, `text-base` y `h-48`. Desde `sm` las rutas pasan a dos columnas y las cards recuperan más espacio; desde `lg` pasan a tres columnas. Los pasos usan una columna por defecto, dos desde `sm` y cuatro desde `lg`. El encabezado queda apilado por defecto y cambia a `md:flex-row`; los enlaces se encuentran en un bloque `hidden md:flex`, mientras el CTA permanece visible. Los títulos, rellenos e imágenes aumentan gradualmente en `sm` y `lg`.
+
+Tabla de pruebas en modo dispositivo
+
+| Ancho | Scroll horizontal | Rutas | Pasos | Encabezado | Enlaces de sección | CTA “Inscríbete” |
+|---:|---|---:|---:|---|---|---|
+| 360 px | No; documento y body: 360 px | 1 columna | 1 columna | Apilado | Ocultos | Visible |
+| 768 px | No; documento y body: 768 px | 2 columnas | 2 columnas | En fila | Visibles | Visible |
+| 1024 px | No; documento y body: 1024 px | 3 columnas | 4 columnas | En fila | Visibles | Visible |
+| 1280 px | No; documento y body: 1280 px | 3 columnas | 4 columnas | En fila | Visibles | Visible |
+
+La verificación se hizo con Chromium en los cuatro viewports. En todos los anchos el contenido cabe exactamente en el viewport, sin overflow horizontal. Las rutas cumplen 1/2/3 columnas y los pasos 1/2/4 columnas. La implementación mantiene las utilidades del kit y no añade CSS propio.
