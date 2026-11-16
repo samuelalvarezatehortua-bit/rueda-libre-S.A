@@ -406,3 +406,128 @@ Tabla de pruebas en modo dispositivo
 | 1280 px | No; documento y body: 1280 px | 3 columnas | 4 columnas | En fila | Visibles | Visible |
 
 La verificación se hizo con Chromium en los cuatro viewports. En todos los anchos el contenido cabe exactamente en el viewport, sin overflow horizontal. Las rutas cumplen 1/2/3 columnas y los pasos 1/2/4 columnas. La implementación mantiene las utilidades del kit y no añade CSS propio.
+
+
+MINIRETO: TEMA DE MARCA Y MODO OSCURO
+
+En `nocturna/src/input.css` se definió el tema con `@theme`. Los seis colores son `verde-ruta` (#1E7A4F), `naranja-pedal` (#F39A2B), `azul-noche` (#14213D), `crema` (#FAF6EF), `gris-asfalto` (#5B6470) y `amarillo-farol` (#FFD166). También se definieron `font-titulos` para Montserrat y `font-texto` para Open Sans. Google Fonts se carga en el mismo CSS mediante `@import`.
+
+La landing y `componentes.html` ya no usan colores genéricos de Tailwind. Sus fondos, textos, bordes, botones, alertas, cards y campos usan las utilidades generadas desde las variables de marca. Los títulos usan `font-titulos` y el cuerpo usa `font-texto`.
+
+El modo oscuro usa la estrategia por defecto de Tailwind: `dark:` responde a la preferencia `prefers-color-scheme: dark`. En claro se usa Crema como fondo y Azul Noche como texto; en oscuro se invierten las superficies principales a Azul Noche y los textos a Crema. Las cards, bordes, alertas, botones y campos tienen variantes coherentes. Verde Ruta no se deja como texto directo sobre Azul Noche: en oscuro cambia a Amarillo Farol o Crema, evitando la combinación Verde Ruta/Azul Noche que da sólo 3.01:1.
+
+Contraste WCAG comprobado
+
+| Combinación | Contraste |
+|---|---:|
+| Verde Ruta sobre Crema | 4.93:1 |
+| Crema sobre Azul Noche | 14.83:1 |
+| Azul Noche sobre Amarillo Farol | 11.08:1 |
+| Gris Asfalto sobre Crema | 5.57:1 |
+| Crema sobre Verde Ruta | 4.93:1 |
+
+Se corrigieron los estados hover y focus para conservar contraste: los botones principales pasan a Azul Noche con texto Crema al pasar el mouse; los botones de contorno pasan a Verde Ruta con texto Crema; los anillos y bordes de foco usan Verde Ruta en claro y Amarillo Farol o Crema en oscuro.
+
+Prueba de modo oscuro
+
+Se emuló `prefers-color-scheme: light` y `dark` con Chromium en la landing y en `componentes.html`. Ambas páginas respondieron 200, cargaron una vez `src/output.css`, mostraron fondo Crema/Texto Azul Noche en claro y fondo Azul Noche/Texto Crema en oscuro. Las fuentes computadas fueron Open Sans para el cuerpo y Montserrat para los títulos.
+
+
+MINIRETO: REFACTORIZACIÓN DEL KIT Y DECISIÓN DE FRAMEWORK
+
+Repetición detectada antes de refactorizar
+
+| Lista repetida en la landing | Apariciones |
+|---|---:|
+| Botón principal completo | 4 veces con la misma lista exacta; el patrón visual de CTA aparecía 6 veces al contar las variantes de offset |
+| Nombre de dato (`font-semibold uppercase tracking-wide...`) | 9 |
+| Valor de dato (`mt-1 text-lg font-bold...`) | 9 |
+| Card de paso (`rounded-2xl border... shadow-lg`) | 4 |
+| Número de paso | 4 |
+| Texto descriptivo de paso | 4 |
+| Card de ruta | 3 |
+| Imagen de ruta | 3 |
+
+Refactorización
+
+Se agregaron exactamente tres clases propias en `@layer components` dentro de `src/input.css`: `.btn-principal`, `.btn-secundario` y `.btn-contorno`. Cada una usa `@apply` para encapsular layout, espaciado, tipografía, color, sombra, hover y foco. Los seis CTAs de la landing ahora usan `btn-principal`; el kit conserva las tres variantes. No se crearon clases propias para cards: el marcado de las cards se mantiene explícito y consistente como se pidió.
+
+Las clases restantes del HTML se ordenaron por categorías: primero layout (`flex`, `grid`, `w-*`, `items-*`), luego espaciado (`p-*`, `px-*`, `gap-*`, `space-*`), tipografía (`font-*`, `text-*`, `leading-*`), color (`bg-*`, `border-*`) y estados (`hover:*`, `focus:*`, `dark:*`).
+
+Medición de recursos
+
+Se generó la versión de producción con:
+
+`npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --minify`
+
+| Recurso | Tamaño medido |
+|---|---:|
+| Tailwind `nocturna/src/output.css` minificado | 29.522 bytes |
+| Bootstrap CSS 5.3.8 del sitio v2.0 | 232.111 bytes |
+| Bootstrap bundle JavaScript 5.3.8 del sitio v2.0 | 80.496 bytes |
+| CSS + JavaScript Bootstrap | 312.607 bytes |
+
+Los tamaños son bytes sin gzip, medidos descargando los recursos exactos de jsDelivr que carga el sitio Bootstrap. Tailwind entrega sólo el CSS de las utilidades detectadas y no necesita JavaScript para estos componentes. Bootstrap incluye un CSS general y un bundle JavaScript para navbar, carousel, modal y otros componentes interactivos.
+
+Comparativa Bootstrap vs Tailwind
+
+| Criterio | Bootstrap | Tailwind en este proyecto |
+|---|---|---|
+| Curva de aprendizaje | Más rápida al inicio: `btn`, `btn-primary`, `container` y `row` resuelven componentes conocidos. | Requiere aprender la composición de utilidades y la CLI, pero las clases describen directamente el diseño y el equipo ya practicó el flujo. |
+| Personalización | Necesita sobrescribir variables y entender la cascada para apartarse del aspecto por defecto. | `@theme` convirtió los seis colores y las dos fuentes de marca en utilidades; el cambio a modo oscuro fue directo con `dark:`. |
+| Tamaño final | La medición real fue 232.111 bytes de CSS más 80.496 bytes de JavaScript: 312.607 bytes sin gzip. | La hoja minificada real fue 29.522 bytes y estos botones/cards no requieren JavaScript. |
+| Casos de uso | Conveniente para prototipos rápidos, equipos que quieren componentes listos y páginas que necesitan interacciones Bootstrap. | Conveniente para una landing muy personalizada, mobile-first, con un sistema visual propio y control fino del CSS final. |
+
+Recomendación
+
+Para la próxima versión completa de Rueda Libre recomiendo estandarizar en Tailwind CLI, no mantener una mezcla de Bootstrap y Tailwind. La recomendación se apoya en la experiencia de ambos enfoques: Tailwind permitió expresar la identidad de Rueda Libre, el Amarillo Farol y el modo oscuro sin pelear con la cascada; la hoja final minificada quedó en 29.522 bytes frente a 312.607 bytes combinados de los recursos Bootstrap medidos; y la repetición de botones se resolvió con sólo tres componentes `@apply`. Bootstrap sigue siendo una opción válida para una entrega rápida con componentes interactivos ya preparados, pero para la próxima versión completa la personalización y el menor peso de Tailwind justifican migrar el resto de páginas de manera planificada y eliminar la mezcla de frameworks.
+
+
+MINIRETO: FORMULARIO DE INSCRIPCIÓN
+
+Cronómetro real: inicio 19:17:01 UTC, cierre 19:17:44 UTC. Tiempo invertido: 43 segundos. El formulario quedó completo dentro del límite de 40 minutos; no quedaron pendientes funcionales.
+
+La sección `#inscripcion` ahora contiene un formulario semántico con tres `fieldset` y `legend`: Datos personales, Detalles de la salida y Preparación. Los controles son nombre, correo, celular, ruta, día, acompañantes, experiencia, bicicleta propia y aceptación de condiciones. Cada control tiene etiqueta explícita; los radios están contenidos dentro de su `label`.
+
+Reglas nativas aplicadas: todos los controles son `required`; el nombre tiene `minlength="3"`; el celular tiene `pattern="3[0-9]{9}"`, `inputmode="numeric"` y un `title` explicativo; acompañantes usa `min="0"` y `max="3"`; las listas tienen opciones válidas para las tres rutas, jueves/viernes/sábado y los tres niveles.
+
+Pruebas ejecutadas en Chromium en modo claro y oscuro, a 360 px y 1280 px:
+
+| Prueba | Resultado |
+|---|---|
+| Envío vacío | Rechazado por validación nativa |
+| Nombre de 2 caracteres | Rechazado por `minlength` |
+| Celular `123` | Rechazado por `pattern` |
+| Acompañantes `4` | Rechazado por `max` |
+| Datos completos válidos | Formulario válido |
+| Recorrido con Tab hasta Enviar inscripción | Botón alcanzable y con foco visible |
+| Modo claro y oscuro | Fondos, campos y textos cambian correctamente |
+| 360 px | Una columna y sin scroll horizontal |
+| 1280 px | Campos cortos en dos columnas desde `md` |
+
+El CSS minificado actualizado quedó en 30.225 bytes porque se agregaron las utilidades necesarias para el formulario.
+
+
+Prueba adicional: con todos los datos válidos, el foco llegó al botón `Enviar inscripción` y se pulsó `Enter`; el navegador envió el formulario por `GET` y generó los parámetros en la URL. Por tanto, el envío también funciona sin mouse.
+
+
+MINIRETO: INTEGRACIÓN DEL SITIO BOOTSTRAP CON RUEDA NOCTURNA
+
+Cronómetro real: inicio 19:20:11 UTC, cierre 19:21:41 UTC. Tiempo invertido: 1 minuto y 30 segundos. La integración quedó completa dentro del límite de 40 minutos.
+
+Se agregó `Rueda Nocturna` a la navbar de inicio, tarifas, reservas y catálogo. La portada Bootstrap ahora tiene cuatro diapositivas en el carrusel; la cuarta muestra la campaña y enlaza a `nocturna/index.html`. En la landing, el logo vuelve a `../index.html` y el botón `Reserva tu bici` lleva a `../paginas/reservas.html`.
+
+La marca queda alineada: Bootstrap y Tailwind comparten los seis códigos `#1E7A4F`, `#F39A2B`, `#14213D`, `#FAF6EF`, `#5B6470` y `#FFD166`. Ambos productos usan las familias Montserrat y Open Sans. El pie de la landing ahora usa los mismos datos de contacto del sitio Bootstrap: `MTBMD@gmail.com` y `+57 302 202 0020`.
+
+Verificación local con servidor HTTP: inicio, tarifas, reservas, catálogo y landing respondieron 200; las rutas relativas de navegación funcionaron; el carrusel tuvo cuatro diapositivas; la landing llegó al sitio raíz y a reservas. No se detectaron errores 404 en los archivos locales del ecosistema. La publicación en GitHub Pages queda pendiente de ejecutar el push autenticado.
+
+
+MINIRETO 12: LANZAMIENTO Y DEMO FINAL
+
+Validación final: Nu HTML Checker recibió `nocturna/index.html` y `paginas/reservas.html`; después de añadir `role="group"` a los datos destacados, `role="dialog"` al modal y codificar el espacio de la imagen del logo, ambas páginas quedaron con **0 errores**. La landing y los productos Bootstrap se probaron localmente a 360 px; la landing también se verificó en 768 px y 1280 px, en claro y oscuro. Se comprobaron enlaces locales, navegación sitio → landing → reservas, imágenes y hojas CSS sin errores 404 locales.
+
+Capturas finales guardadas en `img/capturas/`: `landing-escritorio.png`, `landing-celular.png` y `landing-modo-oscuro.png`. El README resume el proyecto, las tecnologías, la recomendación de framework, el mapa de 12 MiniRetos y el guion de demo.
+
+Demo preparada para máximo 3 minutos: contexto (25 s), sitio y carrusel (30 s), landing responsive (40 s), formulario y teclado (40 s), modo oscuro y decisiones técnicas (25 s), cierre (20 s). La revisión técnica recomendó mantener visible el CTA de reserva en celular, mostrar primero la validación vacía y no afirmar una URL pública hasta completar el push autenticado. El ensayo formal frente a un compañero queda pendiente de una persona externa; el guion y el recorrido verificable ya están listos.
+
+Estado de publicación: commit local listo; GitHub Pages todavía requiere autenticación para ejecutar el push final.

@@ -1,1 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Open+Sans:wght@400;600;700;800&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --color-verde-ruta: #1E7A4F;
+  --color-naranja-pedal: #F39A2B;
+  --color-azul-noche: #14213D;
+  --color-crema: #FAF6EF;
+  --color-gris-asfalto: #5B6470;
+  --color-amarillo-farol: #FFD166;
+  --font-titulos: "Montserrat", Arial, sans-serif;
+  --font-texto: "Open Sans", Arial, sans-serif;
+}
+
+@layer components {
+  .btn-principal {
+    @apply inline-flex rounded-2xl bg-amarillo-farol px-6 py-3 text-base font-extrabold text-azul-noche shadow-lg transition;
+  }
+  .btn-principal:hover {
+    @apply bg-azul-noche text-crema;
+  }
+  .btn-principal:focus {
+    @apply outline-none ring-4 ring-verde-ruta ring-offset-2 ring-offset-crema;
+  }
+  .btn-principal:focus-visible {
+    @apply outline-4 outline-verde-ruta outline-offset-2;
+  }
+
+  .btn-secundario {
+    @apply inline-flex rounded-2xl bg-verde-ruta px-6 py-3 text-base font-extrabold text-crema shadow-lg transition;
+  }
+  .btn-secundario:hover {
+    @apply bg-azul-noche text-crema;
+  }
+  .btn-secundario:focus {
+    @apply outline-none ring-4 ring-verde-ruta ring-offset-2 ring-offset-crema;
+  }
+  .btn-secundario:focus-visible {
+    @apply outline-4 outline-verde-ruta outline-offset-2;
+  }
+
+  .btn-contorno {
+    @apply inline-flex rounded-2xl border-2 border-naranja-pedal px-6 py-3 text-base font-extrabold text-verde-ruta shadow-lg transition;
+  }
+  .btn-contorno:hover {
+    @apply bg-verde-ruta text-crema;
+  }
+  .btn-contorno:focus {
+    @apply outline-none ring-4 ring-verde-ruta ring-offset-2 ring-offset-crema;
+  }
+  .btn-contorno:focus-visible {
+    @apply outline-4 outline-verde-ruta outline-offset-2;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .btn-principal:focus,
+    .btn-secundario:focus,
+    .btn-contorno:focus {
+      @apply ring-amarillo-farol ring-offset-azul-noche;
+    }
+    .btn-principal:focus-visible,
+    .btn-secundario:focus-visible,
+    .btn-contorno:focus-visible {
+      @apply outline-crema;
+    }
+    .btn-contorno {
+      @apply border-amarillo-farol text-amarillo-farol;
+    }
+  }
+}
